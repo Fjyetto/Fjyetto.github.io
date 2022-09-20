@@ -1,0 +1,86 @@
+BODY {
+	BACKGROUND-IMAGE: url(media/background_gradient.jpg); 
+	BACKGROUND-COLOR: #e8eaef; 
+	MARGIN-TOP: 20px; 
+	BACKGROUND-REPEAT: repeat-x; 
+	FONT-FAMILY: "Segoe UI", "verdana", "arial"; 
+	COLOR: #575757; 
+	MARGIN-LEFT: 20px
+}
+A {
+	COLOR: rgb(19,112,171); 
+	MARGIN-LEFT: 0px; 
+	FONT-SIZE: 1em; 
+	VERTICAL-ALIGN: top; 
+	FONT-WEIGHT: normal; 
+	TEXT-DECORATION: none
+}
+A:link {
+	COLOR: rgb(19,112,171); 
+	VERTICAL-ALIGN: top; 
+	TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: rgb(19,112,171); 
+	VERTICAL-ALIGN: top; 
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: rgb(7,74,229); TEXT-DECORATION: underline
+}
+P {
+	FONT-SIZE: 0.9em
+}
+H1 {
+	MARGIN-TOP: 7px; 
+	MARGIN-BOTTOM: 4px; 
+	COLOR: #4465a2; 
+	FONT-SIZE: 1.1em; 
+	VERTICAL-ALIGN: bottom; 
+	FONT-WEIGHT: normal
+}
+H2 {
+	MARGIN-TOP: 20px; 
+	MARGIN-BOTTOM: 1px; FONT-SIZE: 0.9em; 
+	FONT-WEIGHT: normal
+}
+H3 {
+	MARGIN-TOP: 10px; 
+	MARGIN-BOTTOM: 1px; FONT-SIZE: 0.9em; 
+	FONT-WEIGHT: normal
+}
+H4 {
+	MARGIN-TOP: 12px; 
+	MARGIN-BOTTOM: 1px; FONT-SIZE: 0.9em; 
+	FONT-WEIGHT: normal
+}
+H5 {
+	MARGIN-TOP: 1px; 
+	MARGIN-BOTTOM: 0px; COLOR: #575757; 
+	FONT-SIZE: 0.9em; 
+	FONT-WEIGHT: normal
+}
+.actionIcon {
+	MARGIN-TOP: 0px; VERTICAL-ALIGN: middle; MARGIN-RIGHT: 6px
+}
+.infoBlock {
+	PADDING-LEFT: 25px; DISPLAY: block; COLOR: #575757; FONT-SIZE: 0.9em
+}
+.errorCodeAndDivider {
+	COLOR: #787878; FONT-SIZE: 0.7em; FONT-WEIGHT: normal
+}
+UL {
+	LIST-STYLE-POSITION: outside; 
+	PADDING-BOTTOM: 1px; 
+	LINE-HEIGHT: 1.3em; 
+	MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; FONT-SIZE: 0.9em; PADDING-TOP: 1px
+}
+OL {
+	LIST-STYLE-POSITION: outside; 
+	PADDING-BOTTOM: 1px; 
+	LINE-HEIGHT: 1.3em; 
+	MARGIN-TOP: 1px; MARGIN-BOTTOM: 1px; FONT-SIZE: 0.9em; PADDING-TOP: 1px
+}
+.divider {
+	BORDER-BOTTOM: #b6bcc6 1px solid
+}
