@@ -35,5 +35,7 @@ function diag(){
 document.addEventListener("DOMContentLoaded", function(){
   mt = document.getElementById("mainTitle");
   mt.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
+  tj = document.getElementById("title");
+  tj.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
   butt = document.getElementById("diagnose");
 });

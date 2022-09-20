@@ -1,3 +1,35 @@
 body {
-	background-color: #DEDEDE;
+	background-color: #FFFFFF;
+	background-image: url(media/background_gradientj.png);
+	background-repeat: repeat-x;
+	font-family: 'Inter', sans-serif;
+	position: relative;
+}
+h1 {
+	font-family: 'Bebas Neue', cursive;
+}
+
+.fyf {
+	font-family: sans-serif;
+	float:left;
+	padding: 3px;
+}
+
+.navbar {
+	background-color: #FFFFFF;
+	border: 6px solid transparent;
+	border-image: url(media/Bordertest.png) 6 round;
+}
+
+.funyn {
+	background-color: #D7D0C8;
+	border: 6px solid transparent;
+	border-image: url(media/Bordert2.png) 6 round;
+}
+
+.top {
+	background-color: #000080;
+	color: #FFFFFF;
+	border: 6px solid transparent;
+	border-image: url(media/Bordertop.png) 6 round;
 }
