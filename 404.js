@@ -1,5 +1,6 @@
 var J = -1;
-const trolloe = ["Ah?","Ah bah non","Je peux pas","Non","Non plus","J'ai pas envie","Je pense pas","Nope","Bye"];
+//const trolloe = ["Ah?","Ah bah non","Je peux pas","Non","Non plus","J'ai pas envie","Je pense pas","Nope","Bye"];
+const trolloe = ["wait","hold on","lemme try","ok stop","stop its not gonna work","i cant","dude","nope","bye"];
 var butt;
 
 function getBrowserName() { 
@@ -28,14 +29,18 @@ function diag(){
     let p = document.createElement("p")
     const t = document.getElementById("buttonplace");
     t.append(p);
-    p.innerHTML = "Maintenant t'as plus de bouton, t'es content?"
+    p.innerHTML = "no more button. happy?"
   }
 }
 
 document.addEventListener("DOMContentLoaded", function(){
   mt = document.getElementById("mainTitle");
-  mt.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
-  tj = document.getElementById("title");
-  tj.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
+  if (mt){
+	  mt.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
+	  tj = document.getElementById("title");
+	  tj.innerHTML = getBrowserName()+" ne peut pas afficher cette page Web";
+  }
   butt = document.getElementById("diagnose");
+  tj = document.getElementById("IEText");
+  tj.innerHTML = "Cannot find server or DNS Error<BR> "+getBrowserName();
 });

@@ -1,35 +1,89 @@
 body {
-	background-color: #FFFFFF;
-	background-image: url(media/background_gradientj.png);
+	/*background-color: #FFFFFF;
+	background-image: url(media/background_gradientj.png);*/
+	background-color: #386FA7;
 	background-repeat: repeat-x;
 	font-family: 'Inter', sans-serif;
 	position: relative;
 }
+
+.startbutton {
+	display:inline-block;
+	background-image: url("media/start.png");
+	height:28px;
+	width:59px;
+}
+.startbutton:active {
+	background-image: url("media/startA.png");
+}
+
 h1 {
 	font-family: 'Bebas Neue', cursive;
+}
+
+.maind {
+	width: 100%;
+	height: 100%;
+}
+
+.funf {
+	font-family: sans-serif;
 }
 
 .fyf {
 	font-family: sans-serif;
 	float:left;
-	padding: 3px;
+	padding-left: 3px;
+	width: 200px;
+}
+
+.gombs {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/gombs.png");
+	height: 51px;
+	width: 35px;
+}
+.gombs:hover {
+	background-image: url("media/gombsA.png");
 }
 
 .navbar {
+	top: -25px;
+	position:relative;
+	/*height: 90%;*/
+}
+
+.inset {
 	background-color: #FFFFFF;
 	border: 6px solid transparent;
-	border-image: url(media/Bordertest.png) 6 round;
+	border-image: url("media/Bordertest.png") 6 round;
 }
 
 .funyn {
 	background-color: #D7D0C8;
 	border: 6px solid transparent;
-	border-image: url(media/Bordert2.png) 6 round;
+	border-image: url("media/Bordert2.png") 6 round;
 }
 
 .top {
 	background-color: #000080;
 	color: #FFFFFF;
 	border: 6px solid transparent;
-	border-image: url(media/Bordertop.png) 6 round;
+	border-image: url("media/Bordertop.png") 6 round;
+	height: 16px;
+}
+
+.taskbar {
+	width: 100%;
+	height: 28px;
+	background-image: url("media/taskbr.png");
+	position:fixed;
+	bottom: 0px;
+	left: 0px;
+}
+
+.JOE {
+	top: -17px;
+	position:relative;
 }
