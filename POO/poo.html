@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>jeu petet</title>
+        <title>HVST</title>
+		<link rel="icon" type="image/x-icon" href="../media/HVSTicon.png">
 		<link rel="stylesheet" href="style.css">
 		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,11 +40,18 @@
 		document.addEventListener("DOMContentLoaded", function(event) { 
 			const butt = document.getElementById("StartButton");
 			const OwSfx = document.getElementById("OwSfx");
+			const GMS = document.getElementById("GMMusic");
+			const WSfx = document.getElementById("WSfx");
 			const Ow2Sfx = document.getElementById("Ow2Sfx");
+			const titlescreen = document.getElementById("titles");
+			
 			var lastRender = 0;
 			
 			const c = document.getElementById("poo");
 			const ctx = c.getContext("2d");
+			
+			ctx.drawImage(titlescreen,0,0);
+			
 			const img = document.getElementById("trof");
 			const plri = document.getElementById("hom");
 			const str = document.getElementById("star");
@@ -78,13 +86,14 @@
 			var LastShoot = 0;
 			
 			var Lives = 5;
-			var BH = 100;
+			var BH = 50;
 			var Start = tick();
 			
 			function off(){
 				on = false;
 				butt.innerHTML = "Start";
 				document.getElementById("Music").pause();
+				
 				dir = 0;
 				x=0;
 				y=5;
@@ -102,7 +111,7 @@
 				DONGS = []
 			
 				Lives = 5;
-				BH = 20;
+				BH = 50;
 			}
 			
 			butt.onclick = function(){
@@ -112,10 +121,13 @@
 					butt.innerHTML = "Reset";
 					console.log("button pessd");
 					window.requestAnimationFrame(loop);
+					GMS.pause();
+					document.getElementById("Music").currentTime = 0;
 					document.getElementById("Music").play();
 					document.getElementById("Music").loop = true;
 				}else{
 					off();
+					ctx.drawImage(titlescreen,0,0);
 				}
 			};
 			
@@ -127,10 +139,13 @@
 			function update(progress) {
 				if (Lives<=0){
 					off();
+					GMS.currentTime = 0;
+					GMS.play();
 					ctx.drawImage(loser,0,0)
 				}
 				if (BH<=0){
 					off();
+					WSfx.play();
 					ctx.drawImage(winner,0,0)
 				}
 				LC.innerHTML = "Lives: "+Lives;
@@ -303,6 +318,7 @@
 		<img src="hom.png" id="hom" class="asset">
 		<img src="../media/lose.png" id="loser" class="asset">
 		<img src="../media/homerwin.png" id="winner" class="asset">
+		<img src="../media/screen.png" id="titles" class="asset">
 		<br>
 		<center>
 			<h1>Homer Vs. Trool.</h1>
@@ -335,6 +351,12 @@
 				<audio id="Ow2Sfx">
 				  <source src="../media/oit.mp3" type="audio/mpeg">
 				</audio> 
+				<audio id="WSfx">
+				  <source src="../media/win.mp3" type="audio/mpeg">
+				</audio> 
+				<audio id="GMMusic">
+				  <source src="../media/faint_courage.mp3" type="audio/mpeg">
+				</audio>
 			</div>
 		</center>
 		<div class="taskbar">
