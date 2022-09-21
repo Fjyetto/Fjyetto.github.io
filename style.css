@@ -48,6 +48,28 @@ h1 {
 	background-image: url("media/gombsA.png");
 }
 
+.ABOUT {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/ABOUT.png");
+	height: 51px;
+	width: 38px;
+}
+.ABOUT:hover {
+	background-image: url("media/ABOUTA.png");
+}
+
+.HVST {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/HVST.png");
+	height: 50px;
+	width: 32px;
+}
+.HVST:hover {
+	background-image: url("media/HVSTA.png");
+}
+
 .navbar {
 	top: -25px;
 	position:relative;
@@ -86,4 +108,17 @@ h1 {
 .JOE {
 	top: -17px;
 	position:relative;
+}
+
+td {
+	width: 60px;
+}
+
+.hideous {
+	color:transparent;
+	transition:1s;
+}
+.hideous:hover {
+	color:black;
+	transition:1s;
 }

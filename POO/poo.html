@@ -79,6 +79,7 @@
 			
 			var Lives = 5;
 			var BH = 20;
+			var Start = tick();
 			
 			function off(){
 				on = false;
@@ -106,6 +107,7 @@
 			
 			butt.onclick = function(){
 				if (on==false){
+					Start = tick();
 					on = true;
 					butt.innerHTML = "Reset";
 					console.log("button pessd");
@@ -133,7 +135,7 @@
 				}
 				LC.innerHTML = "Lives: "+Lives;
 				BHC.innerHTML = "Boss Health: "+BH;
-				DC.innerHTML = "DONGS: "+DONGS.length;
+				DC.innerHTML = "Timer: "+Math.floor((tick()-Start)/100)/10;
 				
 				if (kht[0]){
 					pvx=pvx+.8;
@@ -171,6 +173,10 @@
 					py = 155+Math.cos(new Date().getTime()*0.006)*4+Math.random()*4-2;
 					px = px+Math.random()*4-2;
 				}
+				if (px<-30)
+					px=329
+				else if (px>329)
+					px=-30
 				for (s of StarsL1) {
 					//console.log(s[0])
 					s[0]+=Math.sin(dir);//.5
@@ -236,6 +242,10 @@
 				ctx.drawImage(img,x,y);
 				// draw the player
 				ctx.drawImage(plri,px,py);
+				if (px>300 || px<0){
+					ctx.drawImage(plri,px-360,py);
+					ctx.drawImage(plri,px+360,py);
+				}
 			}
 			
 			function loop(timestamp) {
@@ -308,9 +318,11 @@
 					<canvas id="poo" width="360" height="240" class="inset" style="background-color: #0A1C30;"></canvas>
 					<ul>
 						<li><button type="button" id="StartButton">Start</button></li>
-						<li id="DCount">Dongs: 0</li>
-						<li id="BHCount">Dongs: 0</li>
+						<li id="DCount">Timer: 0</li>
+						<li id="BHCount">Boss Health: 0</li>
 						<li id="Lives">Lives : 0</li>
+						<li>A/D -> Move</li>
+						<li>j -> Fire</li>
 					</ul>
 				</div>
 				 <audio id="Music">
