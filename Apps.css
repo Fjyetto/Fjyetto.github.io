@@ -1,0 +1,32 @@
+.gombs {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/gombs.png");
+	height: 51px;
+	width: 35px;
+}
+.gombs:hover {
+	background-image: url("media/gombsA.png");
+}
+
+.ABOUT {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/ABOUT.png");
+	height: 51px;
+	width: 38px;
+}
+.ABOUT:hover {
+	background-image: url("media/ABOUTA.png");
+}
+
+.HVST {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/HVST.png");
+	height: 50px;
+	width: 32px;
+}
+.HVST:hover {
+	background-image: url("media/HVSTA.png");
+}
