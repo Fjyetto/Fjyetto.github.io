@@ -1,12 +1,11 @@
-p {
-	font-family: Helvetica,Arial;
+ul {
+	position:relative;
+	float: left;
+	left: -13px;
+	width: 100px;
 }
-h1{
-	font-family: Monaco,monospace;
-}
-.box{
-	background-color: Blue;
-	max-width: 480px;
+div {
+	width: 680px;
 }
 .bronp{
 	color: White;

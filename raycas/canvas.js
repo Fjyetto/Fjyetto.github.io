@@ -1,13 +1,23 @@
 const Map = [
 "#################",
-"#      # #   #  #",
+"#      #     #  #",
 "#    # # # #    #",
-"#    # # # ###  #",
+"#    # # # # #  #",
 "#    # # ### ####",
+"#    #   #      #",
+"#    #   ###### #",
 "#    #          #",
 "#################"];
 
 var ctx = null;
+
+function Rad(aDeg){
+	return (aDeg*Math.PI)/180.0;
+}
+
+function Deg(aRad){
+	return (aRad/Math.PI)*180.0;
+}
 
 class Vector2 extends Array {
   // example methods
@@ -55,9 +65,12 @@ console.log(v.toString());
 console.log(v.Magnitude);*/
 
 const on = true;
+const resolutionX = 480;
 const speed = 0.005
 const FOV = 70;
 var RL = {};
+const Res = 120;
+const Size = Math.ceil(480/Res);
 
 var Controls = [false,false,false,false];
 const KC2C = {
@@ -75,7 +88,12 @@ const Player = {
 
 function update(){
 	Player.Position=Player.Position.Add(Player.Velocity);
-	Player.Velocity=Player.Velocity.Multiply(.86);
+	if (Map[Math.floor(Player.Position[1])].charAt(Math.floor(Player.Position[0]))=="#"){
+		Player.Position=Player.Position.Sub(Player.Velocity);
+		Player.Velocity=Player.Velocity.Multiply(-.6);
+	}else{
+		Player.Velocity=Player.Velocity.Multiply(.86);
+	}
 	if (Controls[0]){
 		console.log("brother");
 		Player.Direction+=.02;
@@ -92,9 +110,11 @@ function update(){
 	if (Controls[1]){
 		Player.Velocity=Player.Velocity.Add(new Vector2(Math.sin(Player.Direction)*-speed,Math.cos(Player.Direction)*-speed));
 	}
+	if (on) setTimeout(update,10);
 }
 
 function ray(origin,angle,max,incr){
+	// there is a much better and faster way to do this
 	var cPos = new Vector2(origin[0],origin[1]);
 	var t = 0;
 	while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
@@ -123,11 +143,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 	});
 	
-	function gameLoop(){
-		update();
-		//draw
-		
+	function draw(){
 		ctx.clearRect(0, 0, 480, 360);
+		
+		let Theta = Player.Direction-Rad(FOV)/2;
+		for (let i=0; i<Res; i++){
+			let Dist = ray(Player.Position,Theta,500,.01)[0];
+			let Len = Math.sqrt((1/Dist)*60000);
+			ctx.fillStyle = 'rgb(10,'+ Math.floor((5.02-Dist)*53) + ','+ Math.floor(Len) +')';
+			ctx.fillRect(i*Size,(360-Len)/2,Size,Len)
+			Theta+= Rad(FOV)/Res
+		}
+		
+		ctx.fillStyle = 'black'
 		
 		Map.forEach((S,Y) => {
 			for (let X = 0; X < S.length; X++){
@@ -137,13 +165,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			}
 		})
 		
-		/*ctx.beginPath();
-		ctx.moveTo(Player.Position[0]*4+Math.sin(Player.Direction+1.4)*2,Player.Position[1]*4+Math.cos(Player.Direction+1.4)*2);
-		ctx.lineTo(Player.Position[0]*4+Math.sin(Player.Direction)*7,Player.Position[1]*4+Math.cos(Player.Direction)*7);
-		ctx.moveTo(Player.Position[0]*4+Math.sin(Player.Direction+1.4)*-2,Player.Position[1]*4+Math.cos(Player.Direction+1.4)*-2);
-		ctx.lineTo(Player.Position[0]*4+Math.sin(Player.Direction)*7,Player.Position[1]*4+Math.cos(Player.Direction)*7);
-		ctx.closePath();
-		ctx.stroke();*/
 		ctx.fillStyle = 'red'
 		ctx.fillRect(Player.Position[0]*4,Player.Position[1]*4,2,2);
 		ctx.fillStyle = 'black'
@@ -161,8 +182,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			ctx.fillRect(460,0,20,20);
 		}
 		
-		//if (on) setTimeout(gameLoop,10,ctx);
-		if (on) window.requestAnimationFrame(gameLoop);
+		if (on) window.requestAnimationFrame(draw);
+	}
+	
+	function gameLoop(){
+		update(); // locked onto a timeout
+		draw(); //FPS dependent
 	}
 
 	setTimeout(gameLoop,10);
