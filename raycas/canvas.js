@@ -149,7 +149,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		let Theta = Player.Direction-Rad(FOV)/2;
 		for (let i=0; i<Res; i++){
 			let Dist = ray(Player.Position,Theta,500,.01)[0];
-			let Len = Math.sqrt((1/Dist)*60000);
+			//let Len = Math.sqrt((1/Dist)*60000);
+			//let dtM = Math.abs(i/Res-.5);
+			let dtM = ((i/Res)-.5)**2;
+			//let Len = Math.atan(Math.sqrt(1/Dist)*.2)*1000;
+			let Len = Math.atan(Math.sqrt(1/Dist)*.2)*1000+(dtM*40)/Dist;
 			ctx.fillStyle = 'rgb(10,'+ Math.floor((5.02-Dist)*53) + ','+ Math.floor(Len) +')';
 			ctx.fillRect(i*Size,(360-Len)/2,Size,Len)
 			Theta+= Rad(FOV)/Res
