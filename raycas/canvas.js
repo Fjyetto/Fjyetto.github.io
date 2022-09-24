@@ -117,12 +117,63 @@ function ray(origin,angle,max,incr){
 	// there is a much better and faster way to do this
 	var cPos = new Vector2(origin[0],origin[1]);
 	var t = 0;
-	while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
-		cPos = cPos.Add(new Vector2(Math.sin(angle)*incr,Math.cos(angle)*incr));
-		t=t+1
+	
+	let dirVec = new Vector2(Math.sin(angle),Math.cos(angle));
+	let currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+	while (t<max && (typeof Map[currentGrid[1]] != "undefined") && (Map[currentGrid[1]].charAt(currentGrid[0])!="#")){
+		//currentGrid = currentGrid.Add(dirVec.Unit);
+		if (dirVec[0]>0){
+			if (dirVec[1]>0){
+				//XPYP
+				if ( Math.ceil(cPos[0])-cPos[0] < Math.ceil(cPos[1])-cPos[1] ){
+					cPos = new Vector2(Math.ceil(cPos[0]),cPos[1]);
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}else{
+					cPos = new Vector2(cPos[0],Math.ceil(cPos[1]));
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}
+			}else{
+				//XPYN
+				if ( Math.ceil(cPos[0])-cPos[0] < cPos[1]-Math.floor(cPos[1]) ){
+					cPos = new Vector2(Math.ceil(cPos[0]),cPos[1]);
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}else{
+					cPos = new Vector2(cPos[0],Math.floor(cPos[1]));
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}
+			}
+		}else{
+			if (dirVec[1]>0){
+				//XNYP
+				if ( cPos[0]-Math.floor(cPos[0]) < Math.ceil(cPos[1])-cPos[1] ){
+					cPos = new Vector2(Math.floor(cPos[0]),cPos[1]);
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}else{
+					cPos = new Vector2(cPos[0],Math.ceil(cPos[1]));
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}
+			}else{
+				//XNYN
+				if ( cPos[0]-Math.floor(cPos[0]) < cPos[1]-Math.floor(cPos[1]) ){
+					cPos = new Vector2(Math.floor(cPos[0]),cPos[1]);
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}else{
+					cPos = new Vector2(cPos[0],Math.floor(cPos[1]));
+					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+				}
+			}
+		}
+		//cPos = cPos.Add();
+		t=t+1;
 	}
+	
+	/*while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
+		cPos = cPos.Add(new Vector2(Math.sin(angle)*incr,Math.cos(angle)*incr));
+		t=t+1;
+	}*/
+	
 	//console.log(cPos,origin);
-	return [(cPos.Sub(origin).Magnitude),cPos];
+	return [(currentGrid.Sub(origin).Magnitude),cPos];
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
