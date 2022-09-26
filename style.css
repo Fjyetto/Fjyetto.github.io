@@ -48,6 +48,11 @@ h1 {
 	border: 6px solid transparent;
 	border-image: url("media/Bordertest.png") 6 round;
 }
+.crazinset {
+	background-color: #FFFFFF;
+	border: 3px solid transparent;
+	border-image: url("media/Bordert3.png") 3 round;
+}
 
 .funyn {
 	background-color: #D7D0C8;
@@ -75,10 +80,6 @@ h1 {
 .JOE {
 	top: -17px;
 	position:relative;
-}
-
-td {
-	width: 60px;
 }
 
 .hideous {
