@@ -119,8 +119,8 @@
 				if (on==false){
 					Start = tick();
 					on = true;
+					loop();
 					butt.innerHTML = "Reset";
-					console.log("button pessd");
 					window.requestAnimationFrame(loop);
 					GMS.pause();
 					document.getElementById("Music").currentTime = 0;
@@ -232,12 +232,14 @@
 					ls = new Date().getTime();
 					DONGS.push([x,15,-3.6,new Date().getTime(),skull,"Enemy"]); //DONGS 0 = X 1 = Y 2 = G 3 = TimeCreated 4 = Image 5 = Type
 				}
+				if (on==true) setTimeout(update,20);
 			}
 			
 			function draw() {
 				
 				//ctx.fillStyle='rgba(10,28,48,.06)';
 				//ctx.fillRect(0,0,360,240);
+				if (on==false) return;
 				
 				for (s of StarsL2) {
 					ctx.drawImage(strr,mod(s[0],360),mod(s[1],240));
@@ -262,10 +264,11 @@
 					ctx.drawImage(plri,px-360,py);
 					ctx.drawImage(plri,px+360,py);
 				}
+				if (on==true) window.requestAnimationFrame(draw);
 			}
 			
 			function loop(timestamp) {
-				var progress = timestamp - lastRender;
+				/*var progress = timestamp - lastRender;
 
 				update(progress);
 				if (on==true) draw();
@@ -273,6 +276,10 @@
 				lastRender = timestamp;
 				if (on==true){
 					window.requestAnimationFrame(loop);
+				}*/
+				if (on==true){
+					draw();
+					update();
 				}
 			}
 			

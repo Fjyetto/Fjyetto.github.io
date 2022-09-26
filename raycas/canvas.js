@@ -39,6 +39,15 @@ class Vector2 extends Array {
 		}
 	}
   }
+  Div(other){
+	if (typeof(other)=="number"){
+		return this.map(x => x/other)
+	}else{
+		if (typeof(other)=="object"){
+			return this.map((e, i) => e / other[i]);
+		}
+	}
+  }
   get Magnitude(){
 	return this.calcMag();
   }
@@ -64,7 +73,7 @@ let v = new Vector2(3, 4);
 console.log(v.toString());
 console.log(v.Magnitude);*/
 
-const on = true;
+let on = true;
 const resolutionX = 480;
 const speed = 0.005
 const FOV = 70;
@@ -113,67 +122,42 @@ function update(){
 	if (on) setTimeout(update,10);
 }
 
+function tileCor(v2){
+	return new Vector2(Math.floor(v2[0]),Math.floor(v2[1]));
+}
+
 function ray(origin,angle,max,incr){
 	// there is a much better and faster way to do this
 	var cPos = new Vector2(origin[0],origin[1]);
 	var t = 0;
 	
-	let dirVec = new Vector2(Math.sin(angle),Math.cos(angle));
-	let currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
+	/*let currentGrid = tileCor(cPos);
+	let dirVec = (new Vector2(Math.sin(angle),Math.cos(angle))).Unit;
+	let dirSign = new Vector2(-1,-1);
+	if (dirVec[0]>0) dirSign[0]=0;
+	if (dirVec[1]>0) dirSign[1]=0;
+		
 	while (t<max && (typeof Map[currentGrid[1]] != "undefined") && (Map[currentGrid[1]].charAt(currentGrid[0])!="#")){
-		//currentGrid = currentGrid.Add(dirVec.Unit);
-		if (dirVec[0]>0){
-			if (dirVec[1]>0){
-				//XPYP
-				if ( Math.ceil(cPos[0])-cPos[0] < Math.ceil(cPos[1])-cPos[1] ){
-					cPos = new Vector2(Math.ceil(cPos[0]),cPos[1]);
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}else{
-					cPos = new Vector2(cPos[0],Math.ceil(cPos[1]));
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}
-			}else{
-				//XPYN
-				if ( Math.ceil(cPos[0])-cPos[0] < cPos[1]-Math.floor(cPos[1]) ){
-					cPos = new Vector2(Math.ceil(cPos[0]),cPos[1]);
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}else{
-					cPos = new Vector2(cPos[0],Math.floor(cPos[1]));
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}
-			}
+		currentGrid = tileCor(cPos);
+		let dt = currentGrid.Add(dirSign).Sub(cPos).Div(dirVec)
+		if (dt[0]<dt[1]){
+			cPos = cPos.Add(dirVec.Unit.Multiply(dt[0]));
 		}else{
-			if (dirVec[1]>0){
-				//XNYP
-				if ( cPos[0]-Math.floor(cPos[0]) < Math.ceil(cPos[1])-cPos[1] ){
-					cPos = new Vector2(Math.floor(cPos[0]),cPos[1]);
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}else{
-					cPos = new Vector2(cPos[0],Math.ceil(cPos[1]));
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}
-			}else{
-				//XNYN
-				if ( cPos[0]-Math.floor(cPos[0]) < cPos[1]-Math.floor(cPos[1]) ){
-					cPos = new Vector2(Math.floor(cPos[0]),cPos[1]);
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}else{
-					cPos = new Vector2(cPos[0],Math.floor(cPos[1]));
-					currentGrid = new Vector2(Math.floor(cPos[0]),Math.floor(cPos[1]));
-				}
-			}
+			cPos = cPos.Add(dirVec.Unit.Multiply(dt[1]));
 		}
-		//cPos = cPos.Add();
-		t=t+1;
-	}
-	
-	/*while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
-		cPos = cPos.Add(new Vector2(Math.sin(angle)*incr,Math.cos(angle)*incr));
+		
 		t=t+1;
 	}*/
 	
+	//gave up
+	
+	while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
+		cPos = cPos.Add(new Vector2(Math.sin(angle)*incr,Math.cos(angle)*incr));
+		t=t+1;
+	}
+	
 	//console.log(cPos,origin);
-	return [(currentGrid.Sub(origin).Magnitude),cPos];
+	return [(cPos.Sub(origin).Magnitude),cPos];
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -222,10 +206,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		
 		ctx.fillStyle = 'red'
 		ctx.fillRect(Player.Position[0]*4,Player.Position[1]*4,2,2);
+		ctx.fillStyle = 'green'
+		ctx.fillRect(Player.Position[0]*4+Math.sin(Player.Direction)*5,Player.Position[1]*4+Math.cos(Player.Direction)*5,2,2);
 		ctx.fillStyle = 'black'
-		/*ctx.fillText(Player.Position[0]+", "+Player.Position[1],0,50);
-		ctx.fillText(Math.floor(Player.Position[0])+", "+Math.floor(Player.Position[1]),0,80);
-		*/
 		const pack = ray(Player.Position,Player.Direction,1000,.01);
 		let dis = pack[0]
 		let P = pack[1]
