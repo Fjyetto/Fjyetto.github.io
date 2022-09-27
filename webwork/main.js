@@ -1,5 +1,5 @@
 // main
-
+console.log("main.js v0");
 import {Vector2} from './Vector2.js';
 
 const Map = [
