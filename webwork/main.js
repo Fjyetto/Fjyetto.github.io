@@ -13,6 +13,8 @@ const Map = [
 "#    #          #",
 "#################"];
 
+const ray1 = new Worker('worker.js');
+
 var ctx = null;
 
 function Rad(aDeg){
@@ -132,13 +134,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		ctx.clearRect(0, 0, 480, 360);
 		
 		let Theta = Player.Direction-Rad(FOV)/2;
-		for (let i=0; i<Res; i++){
+		/*for (let i=0; i<Res; i++){
 			let Dist = ray(Player.Position,Theta,500,.01)[0];
 			let dtM = ((i/Res)-.5)**2;
 			let Len = Math.atan(Math.sqrt(1/Dist)*.2)*1000+(dtM*40)/Dist;
 			ctx.fillStyle = 'rgb(10,'+ Math.floor((5.02-Dist)*53) + ','+ Math.floor(Len) +')';
-			ctx.fillRect(i*Size,(360-Len)/2,Size,Len)
-			Theta+= Rad(FOV)/Res
+			ctx.fillRect(i*Size,(360-Len)/2,Size,Len);
+			Theta+= Rad(FOV)/Res;
+		}*/
+		for (let i=0; i<Res; i++){
+			ray1.postMessage(['R',Player.Position,Theta,400,.01,i,ctx]);
+			
+			Theta+= Rad(FOV)/Res;
 		}
 		
 		ctx.fillStyle = 'black'
