@@ -3,6 +3,7 @@
 //import {Vector2} from './Vector2.js';
 importScripts('Vector2.js');
 let Res = 120;
+let ctx = null;
 const Map = [
 "#################",
 "#      #     #  #",
@@ -32,7 +33,6 @@ self.addEventListener('message' function(e){
 	if (e.data[0]=='R'){
 		let Dist = ray(e.data[1],e.data[2],e.data[3],e.data[4])[0];
 		let i = e.data[5];
-		let ctx = e.data[6];
 		let dtM = ((i/Res)-.5)**2;
 		let Len = Math.atan(Math.sqrt(1/Dist)*.2)*1000+(dtM*40)/Dist;
 		ctx.fillStyle = 'rgb(10,'+ Math.floor((5.02-Dist)*53) + ','+ Math.floor(Len) +')';
@@ -40,4 +40,9 @@ self.addEventListener('message' function(e){
 		//postMessage(ray(e.data[1],e.data[2],e.data[3],e.data[4]));
 	}
 	self.close();
+});
+
+window.addEventListener("DOMContentLoaded",function(event){
+	var c = document.getElementById("gungers");
+	ctx = c.getContext("2d");
 });

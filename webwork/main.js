@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			Theta+= Rad(FOV)/Res;
 		}*/
 		for (let i=0; i<Res; i++){
-			ray1.postMessage(['R',Player.Position,Theta,400,.01,i,ctx]);
+			ray1.postMessage(['R',Player.Position,Theta,400,.01,i]);
 			
 			Theta+= Rad(FOV)/Res;
 		}
