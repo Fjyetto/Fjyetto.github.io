@@ -13,7 +13,7 @@ const Map = [
 "#    #          #",
 "#################"];
 
-const ray1 = new Worker('worker.js');
+const ray1 = new Worker('worker.js', { type: "module" });
 
 var ctx = null;
 
