@@ -29,7 +29,7 @@ function ray(origin,angle,max,incr){
 	return [(cPos.Sub(origin).Magnitude),cPos];
 }
 
-self.addEventListener('message' function(e){
+self.addEventListener('message',function(e){
 	if (e.data[0]=='R'){
 		let Dist = ray(e.data[1],e.data[2],e.data[3],e.data[4])[0];
 		let i = e.data[5];
