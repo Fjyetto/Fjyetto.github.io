@@ -53,6 +53,11 @@ h1 {
 	border: 3px solid transparent;
 	border-image: url("media/Bordert3.png") 3 round;
 }
+.outset {
+	background-color: #D7D0C8;
+	border: 2px solid transparent;
+	border-image: url("media/Bordert21.png") 2 round;
+}
 
 .funyn {
 	background-color: #D7D0C8;
@@ -89,4 +94,20 @@ h1 {
 .hideous:hover {
 	color:black;
 	transition:1s;
+}
+
+li {
+  font: 1rem 'Comic Sans MS', sans-serif;
+  list-style: url('media/list.png');
+}
+
+li:hover{
+  list-style: url('media/list2.png');
+}
+
+a {
+	color: rgb(0,0,255);
+}
+a:visited {
+	color: rgb(127,0,255);
 }

@@ -180,10 +180,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	function draw(){
 		ctx.clearRect(0, 0, 480, 360);
+		ctx.fillStyle="rgb(156,193,193)"
+		ctx.fillRect(0,0,480,180);
+		ctx.fillStyle="rgb(83,86,86)"
+		ctx.fillRect(0,180,480,180);
 		
 		let Theta = Player.Direction-Rad(FOV)/2;
 		for (let i=0; i<Res; i++){
-			let Dist = ray(Player.Position,Theta,500,.01)[0];
+			let Dist = ray(Player.Position,Theta,700,.02)[0];
 			//let Len = Math.sqrt((1/Dist)*60000);
 			//let dtM = Math.abs(i/Res-.5);
 			let dtM = ((i/Res)-.5)**2;

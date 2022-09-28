@@ -1,5 +1,6 @@
-// main
-console.log("main.js v0");
+// main 
+// ON HOLD - DONT EXPECT UPDATES
+console.log("main.js v1");
 import {Vector2} from './Vector2.js';
 
 const Map = [
@@ -132,6 +133,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	function draw(){
 		ctx.clearRect(0, 0, 480, 360);
+		ctx.fillStyle="rgb(156,193,193)"
+		ctx.fillRect(0,0,480,180);
+		ctx.fillStyle="rgb(83,86,86)"
+		ctx.fillRect(0,180,480,180);
 		
 		let Theta = Player.Direction-Rad(FOV)/2;
 		/*for (let i=0; i<Res; i++){
@@ -147,8 +152,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			
 			Theta+= Rad(FOV)/Res;
 		}
-		
-		ctx.fillStyle = 'black'
 		
 		Map.forEach((S,Y) => {
 			for (let X = 0; X < S.length; X++){

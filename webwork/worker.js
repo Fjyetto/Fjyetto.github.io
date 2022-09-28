@@ -1,7 +1,7 @@
 // worker
 
-//import {Vector2} from './Vector2.js';
-importScripts('Vector2.js');
+import {Vector2} from './Vector2.js';
+//importScripts('Vector2.js');
 let Res = 120;
 let ctx = null;
 const Map = [
