@@ -1,5 +1,11 @@
 td {
-	width: 60px;
+	width: 70px;
+	float:center;
+}
+
+td a{
+	left: 50%;
+	transform: translate(-50%,0);
 }
 
 .gombs {
@@ -55,4 +61,15 @@ td {
 }
 .BDAY:hover {
 	background-image: url("media/Apps/BDAYA.png");
+}
+
+.SONIC {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/sonicgamer.png");
+	height: 51px;
+	width: 61px;
+}
+.SONIC:hover {
+	background-image: url("media/Apps/sonicgamerA.png");
 }

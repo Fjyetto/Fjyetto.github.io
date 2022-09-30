@@ -111,3 +111,9 @@ a {
 a:visited {
 	color: rgb(127,0,255);
 }
+
+.frunk{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
