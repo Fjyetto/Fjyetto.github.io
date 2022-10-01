@@ -24,3 +24,14 @@ canvas {
 .asset {
 	width: 0px;
 }
+
+.creditsbutton {
+	display:inline-block;
+	background-image: url("../media/credits.png");
+	height:28px;
+	width:52px;
+}
+
+.creditsbutton:active {
+	background-image: url("../media/creditsA.png");
+}

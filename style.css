@@ -1,9 +1,16 @@
+@font-face{
+	font-family: "W95";
+	src: url("media/w95fa.woff2") format("woff2"), url("media/w95fa.woff") format("woff");
+}
+
 body {
 	/*background-color: #FFFFFF;
 	background-image: url(media/background_gradientj.png);*/
 	background-color: #386FA7;
 	background-repeat: repeat-x;
-	font-family: 'Inter', sans-serif;
+	/*font-family: 'Inter', sans-serif;*/
+	font-family: W95;
+	font-size:13px;
 	position: relative;
 }
 
@@ -13,6 +20,7 @@ body {
 	height:28px;
 	width:59px;
 }
+
 .startbutton:active {
 	background-image: url("media/startA.png");
 }
@@ -83,7 +91,7 @@ h1 {
 }
 
 .JOE {
-	top: -17px;
+	top: -15px;
 	position:relative;
 }
 

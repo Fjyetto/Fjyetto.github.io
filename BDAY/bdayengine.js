@@ -86,6 +86,7 @@ let mouseClick = false;
 let lastMove = tick();
 let mouseVelocity = new Vector2(0,0);
 let partyin = false;
+let crediting = false;
 
 function findObjectCoords(mouseEvent)
 {
@@ -118,6 +119,17 @@ function findObjectCoords(mouseEvent)
 	lastMove = tick();
 	mousePosition = pos;
 	return pos;
+}
+
+function showC(){
+	const creds = document.getElementById("creds");
+	crediting = !crediting;
+	console.log("SHONG");
+	if (crediting==false){
+		creds.style.visibility = "hidden";
+	}else{
+		creds.style.visibility = "visible";
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -213,7 +225,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	};
 	
 	if (nowYet()){
-		
+		//document.getElementById("tbar").append('<a class="creditsbutton" href="javascript:showC();"></a>')
+		let ct = document.createElement('a')
+		ct.className = "creditsbutton"
+		ct.href = "javascript:showC();"
+		document.getElementById("tbar").append(ct);
 		theJ.push(new Sprite(cak1,new Vector2(w*.25+30,-40),new Vector2(0,0),function(me){
 			if (me.Position.Sub(me.Extra).Magnitude>10){
 				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
