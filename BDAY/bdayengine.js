@@ -162,14 +162,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		c.innerHTML = "Birthday!";
 		for (let i=0; i<900; i++){
 			console.log("oops balong");
-			Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(Math.random()*w,Math.random()*100+h+Math.random()*h), new Vector2(Math.random()-.5,-2),function(me){
+			/*Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(Math.random()*w,Math.random()*100+h+Math.random()*h), new Vector2(Math.random()-.5,-2),function(me){
 				me.Velocity = me.Velocity.Add(new Vector2((Math.random()-.5)*.1,(Math.random()-.5)*.1)-2)
 				if (me.Position.Sub(mousePosition).Magnitude<100){
 					me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.02)));
 				}
-			}));
+			}));*/
 			let Jo = new Vector2(Math.random()*w,Math.random()*h)
-			Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],Jo, new Vector2(Math.random()-.5,0),function(me){
+			Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(Math.random()*w,Math.random()*100+h+Math.random()*h), new Vector2(Math.random()-.5,0),function(me){
 				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
 				if (me.Position.Sub(mousePosition).Magnitude<100){
 					me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.02)));
