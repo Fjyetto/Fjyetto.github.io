@@ -230,9 +230,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		ct.className = "creditsbutton"
 		ct.href = "javascript:showC();"
 		document.getElementById("tbar").append(ct);
-		theJ.push(new Sprite(cak1,new Vector2(w*.25+30,-40),new Vector2(0,0),function(me){
+		theJ.push(new Sprite(cak1,new Vector2(w*.25+30,-40),new Vector2(0,-2),function(me){
 			if (me.Position.Sub(me.Extra).Magnitude>10){
-				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
+				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.1))
 			}
 			if (me.Position.Sub(mousePosition).Magnitude<100){
 				me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.01)));
@@ -240,9 +240,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		},new Vector2(w*.25+30,h*.25)));
 		console.log(theJ[0].Off);
 		
-		theJ.push(new Sprite(cak2,new Vector2(w*.75+30,-40),new Vector2(0,0),function(me){
+		theJ.push(new Sprite(cak2,new Vector2(w*.75+30,-40),new Vector2(0,-2),function(me){
 			if (me.Position.Sub(me.Extra).Magnitude>10){
-				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
+				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.1))
 			}
 			if (me.Position.Sub(mousePosition).Magnitude<100){
 				me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.01)));
