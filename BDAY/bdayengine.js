@@ -57,19 +57,22 @@ class Vector2 extends Array {
 class Sprite{
 	constructor(img,Pos,Vel,f,e){
 		this.Image = img;
+		this.Off = new Vector2(img.naturalWidth/2,img.naturalHeight/2)
 		this.Position = Pos;
 		this.Velocity = Vel;
 		this.CustomCode = f;
 		this.Extra = e;
 	}
 	Update(){
-		this.Velocity = this.Velocity.Multiply(.98);
+		//this.Velocity = this.Velocity.Multiply(.98);
+		this.Velocity = this.Velocity.Sub(this.Velocity.Unit.Multiply(.002))
+		this.Velocity = this.Velocity.Multiply(.992);
 		this.Position = this.Position.Add(this.Velocity);
 		this.CustomCode(this);
 	}
 	Draw(){
-		// why wont this work
-		ctx.drawImage(this.Image,this.Position[0],this.Position[1]);
+		// bozo
+		ctx.drawImage(this.Image,this.Position[0]-this.Off[0],this.Position[1]-this.Off[1]);
 		//ctx.drawImage(this.Image,this.Position[0],this.Position[1]);
 	}
 }
@@ -79,8 +82,10 @@ function tick(){
 }
 
 let mousePosition = new Vector2(0,0);
+let mouseClick = false;
 let lastMove = tick();
 let mouseVelocity = new Vector2(0,0);
+let partyin = false;
 
 function findObjectCoords(mouseEvent)
 {
@@ -124,13 +129,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	const bPY = document.getElementById("bPY");
 	const bPP = document.getElementById("bPP");
 	const bCB = document.getElementById("bCB");
+	const cak1 = document.getElementById("cak1");
+	const cak2 = document.getElementById("cak2");
 	const balngs = [bR,bG,bB,bPY,bPP,bCB];
 
 	const c = document.getElementById("jo");
 	const canvas = document.getElementById("bg");
 	
 	let Balons = [];
+	let theJ = [];
 	window.onmousemove = findObjectCoords;
+	/*document.mousedown = function(){
+		console.log("gadm")
+		mouseClick = true;
+	};*/
 	
 	ctx = canvas.getContext("2d");
 	ctx.canvas.width = window.innerWidth;
@@ -145,38 +157,83 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		return Dates.has(d.getDate()+d.getMonth()*31);
 	}
 	
+	function update(){
+		Balons.forEach((b,i)=>{
+			b.Update();
+		});
+		
+		theJ.forEach((s,i)=>{
+			s.Update();
+		});
+		setTimeout(update,10);
+	}
+	
 	function draw(){
 		ctx.fillStyle = "#386FA7";
 		ctx.fillRect(0,0,w,h);
-		ctx.fillStyle = "white";
-		ctx.fillRect(5,Math.random()*20,20,20);
 		
 		Balons.forEach((b,i)=>{
-			b.Update();
 			b.Draw();
+		});
+		
+		theJ.forEach((s,i)=>{
+			s.Draw();
 		});
 		
 		window.requestAnimationFrame(draw);
 	}
-	if (nowYet()){
-		c.innerHTML = "Birthday!";
+	
+	window.party = function(){
+		if (partyin==true){
+			return;
+		}
+		partyin = true;
+		console.log("we are partyin");
 		for (let i=0; i<900; i++){
 			console.log("oops balong");
-			/*Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(Math.random()*w,Math.random()*100+h+Math.random()*h), new Vector2(Math.random()-.5,-2),function(me){
-				me.Velocity = me.Velocity.Add(new Vector2((Math.random()-.5)*.1,(Math.random()-.5)*.1)-2)
-				if (me.Position.Sub(mousePosition).Magnitude<100){
-					me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.02)));
-				}
-			}));*/
 			let Jo = new Vector2(Math.random()*w,Math.random()*h)
-			Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(Math.random()*w,Math.random()*100+h+Math.random()*h), new Vector2(Math.random()-.5,0),function(me){
-				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
-				if (me.Position.Sub(mousePosition).Magnitude<100){
+			Balons.push(new Sprite(balngs[Math.floor(Math.random()*6)],new Vector2(w*.5,Math.random()*100+h+Math.random()*h), new Vector2((Math.random()-.5)*3,-7+Math.random()*.5),function(me){
+				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01)).Add(new Vector2((Math.random()-.5)*.1,(Math.random()-.5)*.1))
+				if (me.Position.Sub(mousePosition).Magnitude<100 && !mouseClick){
 					me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.02)));
+				}else if (me.Position.Sub(mousePosition).Magnitude<150 && mouseClick) {
+					me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(-0.12).Add(mouseVelocity.Multiply(.02)));
 				}
+				/*Balons.forEach((b,i)=>{ COLLISION O_O
+					if (b!=me && me.Position.Sub(b.Position).Magnitude<20){
+						me.Velocity = me.Velocity.Add(me.Position.Sub(b.Position).Unit.Multiply(0.06));
+					}
+				});*/
+
 			},Jo));
 			//Balons.push(new Sprite(bG,new Vector2(60,30), new Vector2(0,-2)));
 		}
+		update();
 		draw();
+	};
+	
+	if (nowYet()){
+		
+		theJ.push(new Sprite(cak1,new Vector2(w*.25+30,-40),new Vector2(0,0),function(me){
+			if (me.Position.Sub(me.Extra).Magnitude>10){
+				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
+			}
+			if (me.Position.Sub(mousePosition).Magnitude<100){
+				me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.01)));
+			}
+		},new Vector2(w*.25+30,h*.25)));
+		console.log(theJ[0].Off);
+		
+		theJ.push(new Sprite(cak2,new Vector2(w*.75+30,-40),new Vector2(0,0),function(me){
+			if (me.Position.Sub(me.Extra).Magnitude>10){
+				me.Velocity = me.Velocity.Add(me.Extra.Sub(me.Position).Unit.Multiply(0.01))
+			}
+			if (me.Position.Sub(mousePosition).Magnitude<100){
+				me.Velocity = me.Velocity.Add(me.Position.Sub(mousePosition).Unit.Multiply(0.12).Add(mouseVelocity.Multiply(.01)));
+			}
+		},new Vector2(w*.75+30,h*.25)));
+		
+		c.innerHTML = '<a href=\"javascript:document.getElementById(\'thanks\').play();window.party();\"><img src="../media/birthda/happ.gif"></img></a><br><center>To someone i know.</center>';
+		
 	}
 });
