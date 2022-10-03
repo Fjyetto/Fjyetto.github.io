@@ -73,3 +73,14 @@ td a{
 .SONIC:hover {
 	background-image: url("media/Apps/sonicgamerA.png");
 }
+
+.UPD {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/UPDATE.png");
+	height: 51px;
+	width: 38px;
+}
+.UPD:hover {
+	background-image: url("media/Apps/UPDATEA.png");
+}
