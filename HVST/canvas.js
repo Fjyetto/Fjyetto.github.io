@@ -1,5 +1,9 @@
 var on = false;
 
+function rad(deg)
+{
+  return deg*(Math.PI/180);
+}
 function mod(x, m) {
 	return (x%m + m)%m;
 }
@@ -25,12 +29,13 @@ let secondsPassed = 0;
 let oldTimeStamp = 0;
 
 class Particle{
-	constructor(X,Y,VX,VY,E,C,G,Life){
+	constructor(X,Y,VX,VY,E,C,CPX,G,Life){
 		this.X = X;
 		this.Y = Y;
 		this.VX = VX;
 		this.VY = VY;
 		this.FS = C;
+		this.GX = CPX;
 		this.G = G;
 		this.E = E;
 		this.Death = tick()+Life;
@@ -40,6 +45,7 @@ class Particle{
 		this.Y+=this.VY*secondsPassed;
 		this.VX*=this.E;
 		this.VY*=this.E;
+		this.VX+=this.GX*secondsPassed;
 		this.VY+=this.G*secondsPassed;
 	}
 }
@@ -59,11 +65,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	const img = document.getElementById("trof");
 	const plri = document.getElementById("hom");
+	const pw = plri.naturalWidth;
+	const ph = plri.naturalHeight;
 	const str = document.getElementById("star");
 	const proj = document.getElementById("proj");
 	const skull = document.getElementById("skull");
 	const loser = document.getElementById("loser");
 	const winner = document.getElementById("winner");
+	const homerpalette = ["#7F5841","#FCC349","#FCBD50","#66A8F9","#4F8BF9","#F9FBFF","#FFFFFF","#66432E"];
+	const troolpalette = ["#7F0000","#FF0000"];
 	
 	const DC = document.getElementById("DCount");
 	const BHC = document.getElementById("BHCount");
@@ -214,18 +224,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				//arrayRemove(DONGS,s);
 				DONGS.splice(index,1);
 			}
-			if ( (y- s[1])**2 < 40 && within(s[0],x,55) && tick()-LastEO>200 && s[5]=="Player" && EnemOuch==false){
+			if ( (y- s[1])**2 < 40 && within(s[0],x,55) && tick()-LastEO>200 && s[5]=="Player" && EnemOuch==false){ // TROOL HIT
 				EnemOuch = true;
+				
+				for (let i = 0; i < 8; i++) {
+					Particles.push(new Particle(x+pw/2+(Math.random()-.5)*pw*.5,y+ph/2+(Math.random()-.5)*ph*.5,(Math.random()-.5)*180,(Math.random()-.5)*150-250,.98,troolpalette[Math.floor(Math.random()*troolpalette.length)],Math.sin(rad((i-1)*5+90))*100,2800,4000));
+				}
+				
 				Ow2Sfx.play();
 				LastEO = tick();
 				DONGS.splice(index,1);
 				console.log("yes");
 			}
-			if ( (py- s[1])**2 < 40 && within(s[0],px,57) && tick()-LastPO>200 && s[5]=="Enemy" && PlayerOuch==false){
+			if ( (py- s[1])**2 < 40 && within(s[0],px,57) && tick()-LastPO>200 && s[5]=="Enemy" && PlayerOuch==false){ // PLAYER HIT
 				PlayerOuch = true;
-				for (let i = 0; i < 36; i++) {
-					Particles.push(new Particle(px,py,Math.sin(i*-.07+.3)*20,-5+Math.cos(i*.07+.35)*40,.997,"#FF0001",.1,4000));
+				
+				for (let i = 0; i < 18; i++) {
+					/*Particles.push(new Particle(px+pw/2,py+ph/2,Math.sin(rad((i-1)*5+90))*(70+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*5+90))*(260+Math.random()*80)+Math.random()*50-380,.975,"#FF0002",Math.sin(rad((i-1)*5+90))*1000,2800,4000));
+					Particles.push(new Particle(px+pw/2,py+ph/2,Math.sin(rad((i-1)*5+90))*(73+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*5+90))*(275+Math.random()*80)+Math.random()*50-390,.98,"#FC0522",Math.sin(rad((i-1)*5+90))*800,2800,4000));*/
+					Particles.push(new Particle(px+pw/2+(Math.random()-.5)*pw*.2,py+ph/2+Math.cos(rad(i*10+90))*15,Math.sin(rad((i-1)*10+90))*(74+Math.random()*20)+Math.random()*10,Math.random()*100-600,.99,"#F90A33",0,2800,4000));
+					Particles.push(new Particle(px+pw/2+(Math.random()-.5)*pw*.5,py+ph/2+(Math.random()-.5)*ph*.5,Math.sin(rad((i-1)*10+90))*(70+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*10+90))*(260+Math.random()*80)+Math.random()*50-300,.98,homerpalette[Math.floor(Math.random()*homerpalette.length)],Math.sin(rad((i-1)*10+90))*100,2800,4000));
 				}
+				
 				OwSfx.play();
 				LastPO = tick();
 				DONGS.splice(index,1);
@@ -247,10 +267,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	function draw() {
 		
+		// -*-*-*-*-*-*-*-*-*- DRAWINGS!!!!!
+		
 		//ctx.fillStyle='rgba(10,28,48,.06)';
 		//ctx.fillRect(0,0,360,240);
 		if (on==false) return;
 		
+		// star render layer 2
 		for (s of StarsL2) {
 			ctx.drawImage(strr,mod(s[0],360),mod(s[1],240));
 		} 
@@ -259,25 +282,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		ctx.fillStyle='rgba(10,28,48,.3';
 		ctx.fillRect(0,0,360,240);
 		
+		// star render layer 1
 		for (s of StarsL1) {
 			ctx.drawImage(str,mod(s[0],360),mod(s[1],240));
 		} 
 		
+		// projectile render
 		for (s of DONGS) {
 			ctx.drawImage(s[4],s[0],s[1]);
 		} 
-		Particles.forEach((P,index) => {
-			ctx.fillStyle = P.FS;
-			ctx.fillRect(P.X,P.Y,5,5);
-		});
+		
 		// draw the enemy
 		ctx.drawImage(img,x,y);
+		
 		// draw the player
 		ctx.drawImage(plri,px,py);
 		if (px>300 || px<0){
 			ctx.drawImage(plri,px-360,py);
 			ctx.drawImage(plri,px+360,py);
 		}
+		
+		// particle render
+		Particles.forEach((P,index) => {
+			ctx.fillStyle = P.FS;
+			ctx.fillRect(P.X,P.Y,3,3);
+		});
 		//if (on==true) window.requestAnimationFrame(draw);
 	}
 	
