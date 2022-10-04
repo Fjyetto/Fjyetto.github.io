@@ -27,6 +27,7 @@ function within(n,l,w){
 
 let secondsPassed = 0;
 let oldTimeStamp = 0;
+let attackState = 0;
 
 class Particle{
 	constructor(X,Y,VX,VY,E,C,CPX,G,Life){
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	const img = document.getElementById("trof");
 	const plri = document.getElementById("hom");
+	const hbar = document.getElementById("hbar");
 	const pw = plri.naturalWidth;
 	const ph = plri.naturalHeight;
 	const str = document.getElementById("star");
@@ -89,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	var dir = 0;
 	var x=0;
-	var y=5;
+	var y=17;
 	var pvx=0;
 	var px=0;
 	var py=0;
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		
 		dir = 0;
 		x=0;
-		y=5;
+		y=17;
 		pvx=0;
 		px=0;
 		py=0;
@@ -176,14 +178,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 		if (kht[2] && tick()-LastShoot>100){
 			LastShoot = tick();
-			DONGS.push([px+10,153,1.7,new Date().getTime(),proj,"Player"]);
+			DONGS.push([px+10,153,0,1.7,tick(),proj,"Player"]);  //DONGS 0 = X 1 = Y 2 = VX 3 = G 4 = TimeCreated 5 = Image 6 = Type
 		}
 		dir=dir+Math.cos(new Date().getTime()*0.00002)*.003
 		pvx=pvx*.86;
 		px=px+pvx;
 		if (EnemOuch==false){
 			x=Math.cos(new Date().getTime()*0.002)*120+155;
-			y=5;
+			y=17;
 		}else{
 			if (tick()-LastEO>120){
 				BH = BH-1
@@ -191,17 +193,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				EnemOuch = false;
 			}
 			x = Math.cos(tick()*0.002)*120+155 + Math.random()*5;
-			y = 5+Math.random()*5;
+			y = 17+Math.random()*5;
 		}
 		if (PlayerOuch==false){
-			py = 155+Math.cos(new Date().getTime()*0.006)*4;
+			py = 155+Math.cos(tick()*0.006)*4;
 		}else{
 			if (tick()-LastPO>120){
 				LastPO = tick();
 				PlayerOuch = false;
 				Lives = Lives-1
 			}
-			py = 155+Math.cos(new Date().getTime()*0.006)*4+Math.random()*4-2;
+			py = 155+Math.cos(tick()*0.006)*4+Math.random()*4-2;
 			px = px+Math.random()*4-2;
 		}
 		if (px<-30)
@@ -217,14 +219,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			s[0]+=Math.sin(dir)*.4;//.25
 			s[1]+=Math.cos(dir+.12)*.4;//.8
 		} 
-		DONGS.forEach((s,index) => {
-			s[1]-=s[2]*secondsPassed*48;
-			s[2]=s[2]*1.02;
-			if ((tick()-s[3])>10000){
+		DONGS.forEach((s,index) => {  //DONGS 0 = X / 1 = Y / 2 = VX / 3 = G / 4 = TimeCreated / 5 = Image / 6 = Type
+			s[1]-=s[3]*secondsPassed*48;
+			s[0]+=s[2]*secondsPassed*48;
+			s[2]*=.998;
+			s[3]=s[3]*1.02;
+			if ((tick()-s[4])>10000){
 				//arrayRemove(DONGS,s);
 				DONGS.splice(index,1);
 			}
-			if ( (y- s[1])**2 < 40 && within(s[0],x,55) && tick()-LastEO>200 && s[5]=="Player" && EnemOuch==false){ // TROOL HIT
+			if ( (y-s[1])**2 < 40 && within(s[0],x,55) && tick()-LastEO>200 && s[6]=="Player" && EnemOuch==false){ // TROOL HIT
 				EnemOuch = true;
 				
 				for (let i = 0; i < 8; i++) {
@@ -236,13 +240,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				DONGS.splice(index,1);
 				console.log("yes");
 			}
-			if ( (py- s[1])**2 < 40 && within(s[0],px,57) && tick()-LastPO>200 && s[5]=="Enemy" && PlayerOuch==false){ // PLAYER HIT
+			if ( (py- s[1])**2 < 40 && within(s[0],px,57) && tick()-LastPO>200 && s[6]=="Enemy" && PlayerOuch==false){ // PLAYER HIT
 				PlayerOuch = true;
 				
 				for (let i = 0; i < 18; i++) {
 					/*Particles.push(new Particle(px+pw/2,py+ph/2,Math.sin(rad((i-1)*5+90))*(70+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*5+90))*(260+Math.random()*80)+Math.random()*50-380,.975,"#FF0002",Math.sin(rad((i-1)*5+90))*1000,2800,4000));
 					Particles.push(new Particle(px+pw/2,py+ph/2,Math.sin(rad((i-1)*5+90))*(73+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*5+90))*(275+Math.random()*80)+Math.random()*50-390,.98,"#FC0522",Math.sin(rad((i-1)*5+90))*800,2800,4000));*/
-					Particles.push(new Particle(px+pw/2+(Math.random()-.5)*pw*.2,py+ph/2+Math.cos(rad(i*10+90))*15,Math.sin(rad((i-1)*10+90))*(74+Math.random()*20)+Math.random()*10,Math.random()*100-600,.99,"#F90A33",0,2800,4000));
+					Particles.push(new Particle(px+pw/2+(Math.random()-.5)*pw*.2,py+ph/2+Math.cos(rad(i*10+90))*15,Math.sin(rad((i-1)*10+90))*(74+Math.random()*20)+Math.random()*10,Math.random()*100-600,.99,"#F92A3B",0,2800,4000));
 					Particles.push(new Particle(px+pw/2+(Math.random()-.5)*pw*.5,py+ph/2+(Math.random()-.5)*ph*.5,Math.sin(rad((i-1)*10+90))*(70+Math.random()*20)+Math.random()*10,-5+Math.cos(rad(i*10+90))*(260+Math.random()*80)+Math.random()*50-300,.98,homerpalette[Math.floor(Math.random()*homerpalette.length)],Math.sin(rad((i-1)*10+90))*100,2800,4000));
 				}
 				
@@ -258,10 +262,43 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				Particles.splice(index,1);
 			}
 		});
-		if ((new Date().getTime()-ls)>Math.random()*800+200){
-			ls = new Date().getTime();
-			DONGS.push([x,15,-3.6,new Date().getTime(),skull,"Enemy"]); //DONGS 0 = X 1 = Y 2 = G 3 = TimeCreated 4 = Image 5 = Type
+		
+		switch (attackState){
+			case 0:
+				if ((tick()-ls)>Math.random()*800+200){
+					ls = tick();
+					DONGS.push([x,15,0,-3.6,tick(),skull,"Enemy"]); //DONGS 0 = X 1 = Y 2 = VX 3 = G 4 = TimeCreated 5 = Image 6 = Type
+				}
+				break;
+			case 1:
+				if ((tick()-ls)>400){
+					ls = tick();
+					DONGS.push([x,15,(px-x)*.03,-3.6+(py-y)*-.01,tick(),skull,"Enemy"]); //DONGS 0 = X 1 = Y 2 = VX 3 = G 4 = TimeCreated 5 = Image 6 = Type
+				}
+				break;
+			case 2:
+				if ((tick()-ls)>800){
+					ls = tick();
+					DONGS.push([x,15,0,-3.6,tick(),skull,"Enemy"]);
+					DONGS.push([x,15,3,-3.6,tick(),skull,"Enemy"]);
+					DONGS.push([x,15,-3,-3.6,tick(),skull,"Enemy"]);
+				}
+				break;
+			case 3:
+				if ((tick()-ls)>1000){
+					ls = tick();
+					for (let i=0;i < 20; i++){
+						DONGS.push([x,15-i*8,0,-3.6,tick(),skull,"Enemy"]);
+						DONGS.push([x,15-i*8+4,0,-4,tick(),skull,"Enemy"]);
+						DONGS.push([x,15-i*8+8,0,-4.4,tick(),skull,"Enemy"]);
+					}
+				}
+				break;
 		}
+		/* if ((tick()-ls)>Math.random()*800+200){
+			ls = tick();
+			DONGS.push([x,15,-3.6,tick(),skull,"Enemy"]); //DONGS 0 = X 1 = Y 2 = G 3 = TimeCreated 4 = Image 5 = Type
+		} */
 		//if (on==true) setTimeout(update,20);
 	}
 	
@@ -289,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		
 		// projectile render
 		for (s of DONGS) {
-			ctx.drawImage(s[4],s[0],s[1]);
+			ctx.drawImage(s[5],s[0],s[1]);
 		} 
 		
 		// draw the enemy
@@ -307,6 +344,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			ctx.fillStyle = P.FS;
 			ctx.fillRect(P.X,P.Y,3,3);
 		});
+		
+		ctx.fillStyle='#8C6C13';
+		ctx.fillRect(9,3,342,9);
+		ctx.fillStyle='#CC0000';
+		ctx.fillRect(10,4,340,7);
+		ctx.fillStyle = '#FF0000';
+		ctx.fillRect(10,4,340*(BH/50),7);
+		ctx.drawImage(hbar,10+340*(BH/50),3);
+		
+		
 		//if (on==true) window.requestAnimationFrame(draw);
 	}
 	
