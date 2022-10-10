@@ -61,12 +61,16 @@ h1 {
 	border: 3px solid transparent;
 	border-image: url("media/Bordert3.png") 3 round;
 }
+.winbor {
+	background-color: #D7D0C8;
+	border: 3px solid transparent;
+	border-image: url("media/Bordert2insane.png") 3 round;
+}
 .outset {
 	background-color: #D7D0C8;
 	border: 2px solid transparent;
 	border-image: url("media/Bordert21.png") 2 round;
 }
-
 .funyn {
 	background-color: #D7D0C8;
 	border: 6px solid transparent;
@@ -128,4 +132,14 @@ a:visited {
 footer{
 	position: fixed;
 	bottom: 30px;
+}
+.ybutt {
+	background-color: #D7D0C8;
+	border: 3px solid transparent;
+	border-image: url("media/Bordert31.png") 3 round;
+}
+.ybutt:active {
+	background-color: #D7D0C8;
+	border: 3px solid transparent;
+	border-image: url("media/Bordert3.png") 3 round;
 }
