@@ -1,0 +1,18 @@
+.asset {
+	width: 0px;
+}
+ul {
+	position:relative;
+	float: left;
+	left: -13px;
+	width: 90px;
+}
+div {
+	width: 512px;
+}
+li {
+	font-size: 12px;
+}
+h2 {
+	font: comic-sans;
+}

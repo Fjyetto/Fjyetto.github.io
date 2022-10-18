@@ -1,0 +1,189 @@
+// main 
+// ON HOLD - DONT EXPECT UPDATES
+console.log("main.js v1");
+import {Vector2} from './Vector2.js';
+
+const Map = [
+"#################",
+"#      #     #  #",
+"#    # # # #    #",
+"#    # # # # #  #",
+"#    # # ### ####",
+"#    #   #      #",
+"#    #   ###### #",
+"#    #          #",
+"#################"];
+
+const ray1 = new Worker('worker.js', { type: "module" });
+
+var ctx = null;
+
+function Rad(aDeg){
+	return (aDeg*Math.PI)/180.0;
+}
+
+function Deg(aRad){
+	return (aRad/Math.PI)*180.0;
+}
+
+let on = true;
+const resolutionX = 480;
+const speed = 0.005
+const FOV = 70;
+var RL = {};
+const Res = 120;
+const Size = Math.ceil(480/Res);
+
+var Controls = [false,false,false,false];
+const KC2C = {
+	68 : 0, //D
+	83 : 1, //A
+	81 : 2, //S
+	90 : 3 //W
+};
+
+const Player = {
+	Position : new Vector2(4,4),
+	Velocity : new Vector2(0,0),
+	Direction : 0
+};
+
+function update(){
+	Player.Position=Player.Position.Add(Player.Velocity);
+	if (Map[Math.floor(Player.Position[1])].charAt(Math.floor(Player.Position[0]))=="#"){
+		Player.Position=Player.Position.Sub(Player.Velocity);
+		Player.Velocity=Player.Velocity.Multiply(-.6);
+	}else{
+		Player.Velocity=Player.Velocity.Multiply(.86);
+	}
+	if (Controls[0]){
+		console.log("brother");
+		Player.Direction+=.02;
+	}
+	else
+	if (Controls[2]){
+		Player.Direction-=.02;
+	}
+	
+	if (Controls[3]){
+		Player.Velocity=Player.Velocity.Add(new Vector2(Math.sin(Player.Direction)*speed,Math.cos(Player.Direction)*speed));
+	}
+	else
+	if (Controls[1]){
+		Player.Velocity=Player.Velocity.Add(new Vector2(Math.sin(Player.Direction)*-speed,Math.cos(Player.Direction)*-speed));
+	}
+	if (on) setTimeout(update,10);
+}
+
+function tileCor(v2){
+	return new Vector2(Math.floor(v2[0]),Math.floor(v2[1]));
+}
+
+function ray(origin,angle,max,incr){
+	// there is a much better and faster way to do this
+	var cPos = new Vector2(origin[0],origin[1]);
+	var t = 0;
+	
+	/*let currentGrid = tileCor(cPos);
+	let dirVec = (new Vector2(Math.sin(angle),Math.cos(angle))).Unit;
+	let dirSign = new Vector2(-1,-1);
+	if (dirVec[0]>0) dirSign[0]=0;
+	if (dirVec[1]>0) dirSign[1]=0;
+		
+	while (t<max && (typeof Map[currentGrid[1]] != "undefined") && (Map[currentGrid[1]].charAt(currentGrid[0])!="#")){
+		currentGrid = tileCor(cPos);
+		let dt = currentGrid.Add(dirSign).Sub(cPos).Div(dirVec)
+		if (dt[0]<dt[1]){
+			cPos = cPos.Add(dirVec.Unit.Multiply(dt[0]));
+		}else{
+			cPos = cPos.Add(dirVec.Unit.Multiply(dt[1]));
+		}
+		
+		t=t+1;
+	}*/
+	
+	//gave up
+	
+	while ( t<max && (typeof Map[Math.floor(cPos[1])] != "undefined") && (Map[Math.floor(cPos[1])].charAt(Math.floor(cPos[0]))!="#")){
+		cPos = cPos.Add(new Vector2(Math.sin(angle)*incr,Math.cos(angle)*incr));
+		t=t+1;
+	}
+	
+	//console.log(cPos,origin);
+	return [(cPos.Sub(origin).Magnitude),cPos];
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+	var c = document.getElementById("gungers");
+	ctx = c.getContext("2d");
+	console.log("SEX!");
+	document.addEventListener("keydown", (event) => {
+		/*if (event.keyCode == 68){
+			//Player.Direction+=3;
+			Controls[0]=true;
+			console.log("shit");
+		}*/
+		Controls[KC2C[event.keyCode]] = true;
+	});
+	document.addEventListener("keyup", (event) => {
+		if (event.keyCode in KC2C) {
+			Controls[KC2C[event.keyCode]] = false;
+		}
+	});
+	
+	function draw(){
+		ctx.clearRect(0, 0, 480, 360);
+		ctx.fillStyle="rgb(156,193,193)"
+		ctx.fillRect(0,0,480,180);
+		ctx.fillStyle="rgb(83,86,86)"
+		ctx.fillRect(0,180,480,180);
+		
+		let Theta = Player.Direction-Rad(FOV)/2;
+		/*for (let i=0; i<Res; i++){
+			let Dist = ray(Player.Position,Theta,500,.01)[0];
+			let dtM = ((i/Res)-.5)**2;
+			let Len = Math.atan(Math.sqrt(1/Dist)*.2)*1000+(dtM*40)/Dist;
+			ctx.fillStyle = 'rgb(10,'+ Math.floor((5.02-Dist)*53) + ','+ Math.floor(Len) +')';
+			ctx.fillRect(i*Size,(360-Len)/2,Size,Len);
+			Theta+= Rad(FOV)/Res;
+		}*/
+		for (let i=0; i<Res; i++){
+			ray1.postMessage(['R',Player.Position,Theta,400,.01,i]);
+			
+			Theta+= Rad(FOV)/Res;
+		}
+		
+		Map.forEach((S,Y) => {
+			for (let X = 0; X < S.length; X++){
+				if (S[X]=="#"){
+					ctx.fillRect(X*4,Y*4,4,4);
+				}
+			}
+		})
+		
+		ctx.fillStyle = 'red'
+		ctx.fillRect(Player.Position[0]*4,Player.Position[1]*4,2,2);
+		ctx.fillStyle = 'green'
+		ctx.fillRect(Player.Position[0]*4+Math.sin(Player.Direction)*5,Player.Position[1]*4+Math.cos(Player.Direction)*5,2,2);
+		ctx.fillStyle = 'black'
+		const pack = ray(Player.Position,Player.Direction,1000,.01);
+		let dis = pack[0]
+		let P = pack[1]
+		ctx.fillText(dis,0,110);
+		ctx.fillStyle = 'cyan'
+		ctx.fillRect(P[0]*4,P[1]*4,2,2)
+		ctx.fillStyle = 'black'
+		if (Map[Math.floor(Player.Position[1])].charAt(Math.floor(Player.Position[0]))=="#"){
+			ctx.fillRect(460,0,20,20);
+		}
+		
+		if (on) window.requestAnimationFrame(draw);
+	}
+	
+	function gameLoop(){
+		update(); // locked onto a timeout
+		draw(); //FPS dependent
+	}
+
+	setTimeout(gameLoop,10);
+});
