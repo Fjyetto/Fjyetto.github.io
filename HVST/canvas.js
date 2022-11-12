@@ -367,6 +367,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if (on==true){
 			window.requestAnimationFrame(loop);
 		}*/
+		if (on==true) window.requestAnimationFrame(loop);
 		
 		secondsPassed = (timeStamp - oldTimeStamp) / 1000;
 		oldTimeStamp = timeStamp;
@@ -374,11 +375,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if (on==true){
 			draw();
 			update(secondsPassed);
-			window.requestAnimationFrame(loop);
 		}
 	}
 	
-	document.addEventListener('keypress',function(e){
+	document.addEventListener('keydown',function(e){
 		if (e.code=="KeyD"){
 			//pvx=pvx+1;
 			kht[0]=true;

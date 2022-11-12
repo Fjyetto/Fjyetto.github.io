@@ -1,12 +1,14 @@
 ul {
+	list-style: none;
 	position:relative;
 	float: left;
-	left: -13px;
-	width: 100px;
-}
-div {
-	width: 680px;
+	padding-left: 4.2%;
 }
 .bronp{
 	color: White;
+}
+li {
+	margin-top:2px;
+	text-align:left;
+	transform:translate(0px,0px);
 }

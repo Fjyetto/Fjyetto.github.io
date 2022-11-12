@@ -8,29 +8,26 @@
 		<script src="CheckMobile.js"></script>
 		
 		<link rel="icon" type="image/x-icon" href="../media/Apps/BFicon.png">
+		
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="../style.css">
 		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<center>
-			<h1>Ball Finder</h1>
-			<h2>WHAT!!</h2>
-			<div class="funf">
-				<div class="top">
+			<div class="window" style="width:600px;">
+				<div style="justify-content:left;" class="title-bar">
 					<img src="../media/Apps/BFicon.png">
-					<img src="../media/titleBalls.png">
+					<div class="title-bar-text" style="padding-left:6px;">Ballfinder</div>
 				</div>
-				<div class="funyn">
-					<canvas id="gungers" width="480" height="360" style="border:1px solid #000000;"></canvas>
+				<div style="display:flex; justify-content:space-between;margin-top:5px;">
 					<ul style="width:150px;">
 						<li>Balls: 0/0</li>
 						<li>Health: 1 billion</li>
 						<li>WASD -> Move</li>
 					</ul>
+					<canvas id="gungers" width="480" height="360" class="crazinset"></canvas>
 				</div>
 			</div>
 		</center>

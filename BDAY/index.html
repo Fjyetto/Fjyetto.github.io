@@ -4,15 +4,12 @@
 	<head>
 		<title>BDAY.html</title>
 		<link rel="icon" type="image/x-icon" href="../media/notepadicon.png">
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
 		<link rel=stylesheet type=text/css href="../style.css">
 		<link rel=stylesheet type=text/css href="style.css">
 		
 		<script src="CheckMobile.js"></script>
 		<script src="bdayengine.js"></script>
-		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
 		
 		<meta content="projrminj" property="og:title" />
 		<meta content="proja" property="og:description" />
@@ -33,12 +30,11 @@
 		<audio id="thanks">
 		  <source src="../media/birthda/thanks.mp3" type="audio/mpeg">
 		</audio> 
-		<div class="fyn" style="width:260px;">
-			<div class="top">
-				<p class="JOE">
-					<img src="../media/Apps/notepadicon.png">
-					<img src="../media/titleBDAY.png">
-				</p>
+		<center>
+		<div class="window" style="width:260px;top:50%;transform:translate(0px,50%);">
+			<div style="justify-content:left;" class="title-bar">
+				<img src="../media/Apps/notepadicon.png">
+				<div class="title-bar-text" style="padding-left:6px;">BDAY</div>
 			</div>
 			<div class="funyn">
 				<div class="crazinset">
@@ -48,6 +44,7 @@
 				</div>
 			</div>
 		</div>
+		</center>
 		<div class="taskbar" id="tbar">
 			<a class="startbutton" href="../"></a>
 			<img src="../media/menu.png" id="creds" style="position:absolute;transform:translate(0,-100%);visibility: hidden;">

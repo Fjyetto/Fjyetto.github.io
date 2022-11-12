@@ -5,13 +5,10 @@
         <meta charset="utf-8" />
         <title>HVST</title>
 		<link rel="icon" type="image/x-icon" href="../media/Apps/HVSTicon.png">
-		<link rel="stylesheet" href="style.css">
 		
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
-		
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
 		<link rel="stylesheet" href="../style.css">
+		<link rel="stylesheet" href="style.css">
 		
 		<script src="canvas.js"></script>
 		<script src="CheckMobile.js"></script>
@@ -30,17 +27,12 @@
 		<img src="../media/screen.png" id="titles" class="asset">
 		<br>
 		<center>
-			<h1>Homer Vs. Trool.</h1>
-			<h2>Battle of the millenium.</h2>
-			<div class="funf">
-				<div class="top">
-				
+			<div class="window" style="width:512px;">
+				<div style="justify-content:left;" class="title-bar">
 					<img src="../media/Apps/HVSTicon.png">
-					<img src="../media/titlehvst.png">
-				
+					<div class="title-bar-text" style="padding-left:6px;">Homer VS. Trool</div>
 				</div>
-				<div class="funyn">
-					<canvas id="poo" width="360" height="240" class="inset" style="background-color: #0A1C30;"></canvas>
+				<div style="display:flex; justify-content:space-between;">
 					<ul style="width:100px;">
 						<li><button type="button" id="StartButton">Start</button></li>
 						<li id="DCount">Timer: 0</li>
@@ -49,6 +41,7 @@
 						<li>A/D -> Move</li>
 						<li>j -> Fire</li>
 					</ul>
+					<canvas id="poo" width="360" height="240" class="inset" style="background-color: #0A1C30;"></canvas>
 				</div>
 				 <audio id="Music">
 				  <source src="../media/mparty2_duel.mp3" type="audio/mpeg">
