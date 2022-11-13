@@ -367,10 +367,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if (on==true){
 			window.requestAnimationFrame(loop);
 		}*/
-<<<<<<< HEAD
 		if (on==true) window.requestAnimationFrame(loop);
-=======
->>>>>>> 67935bd7e47787d926a3b6621c16c9f35d09c156
 		
 		secondsPassed = (timeStamp - oldTimeStamp) / 1000;
 		oldTimeStamp = timeStamp;
@@ -378,18 +375,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if (on==true){
 			draw();
 			update(secondsPassed);
-<<<<<<< HEAD
 		}
 	}
 	
 	document.addEventListener('keydown',function(e){
-=======
-			window.requestAnimationFrame(loop);
-		}
-	}
-	
-	document.addEventListener('keypress',function(e){
->>>>>>> 67935bd7e47787d926a3b6621c16c9f35d09c156
 		if (e.code=="KeyD"){
 			//pvx=pvx+1;
 			kht[0]=true;
