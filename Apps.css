@@ -1,11 +1,5 @@
 td {
 	width: 70px;
-	float:center;
-}
-
-td a{
-	left: 50%;
-	transform: translate(-50%,0);
 }
 
 .gombs {

@@ -120,3 +120,11 @@ footer{
 	border: 3px solid transparent;
 	border-image: url("media/Bordert3.png") 3 round;
 }
+.appName {
+	font-family: "Pixelated MS Sans Serif",Arial;
+	font-size: 11px;
+	color: #fff;
+}
+.appsy > * {
+	text-decoration: none;
+}

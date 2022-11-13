@@ -10,6 +10,31 @@
 		
 		<script src="CheckMobile.js"></script>
 		
+		<style>
+		td {
+			justify-items:center;
+			display:inline-grid;
+		}
+		a {
+			text-decoration:none;
+			display:flex;
+			flex-direction:column;
+			align-items:flex-start;
+		}
+		a > * {
+			left:50%;
+			position:relative;
+			transform: translateX(-50%);
+		}
+		a > p:hover{
+			background-color: rgb(0,0,128);
+			
+		}
+		a >p{
+			padding: 2px 3px;
+		}
+		</style>
+		
 		<meta charset="UTF-8" />
 		<meta content="babdomigs" property="og:title" />
 		<meta content="it's the website with babdomig's shit in it" property="og:description" />
@@ -20,17 +45,17 @@
 <body>
 	<table class="appsy">
 		<tr>
-			<td> <a href="gombs.html"><img src="./media/Apps/text.png"></img></a> </td>
-			<td> <a href="ABOUT.html"><img src="./media/Apps/text.png"></img></a> </td>
-			<td> <a href="updates/"><img src="./media/Apps/text.png"></img></a> </td>
+			<td> <a href="gombs.html"><img src="./media/Apps/text.png"><p class="appName">gombs.html</p></a> </td>
+			<td> <a href="ABOUT.html"><img src="./media/Apps/text.png"><p class="appName">ABOUT.html</p></a> </td>
+			<td> <a href="updates/"><img src="./media/Apps/text.png"><p class="appName">Updates</p></a> </td>
 		</tr>
 		<tr>
-			<td> <a href="HVST/" class="HVST"></a> </td>
-			<td> <a href="raycas/" class="BF"></a> </td>
+			<td> <a href="HVST/"><img src="./media/Apps/HVST.png"><p class="appName">HVST</p></a> </td>
+			<td> <a href="raycas/"><img src="./media/Apps/BF.png"><p class="appName">BF</p></a> </td>
 		</tr>
 		<tr>
-			<td> <a href="BDAY/" class="BDAY"></a> </td>
-			<td> <a href="SONIC/" class="SONIC"></a> </td>
+			<td> <a href="BDAY/"><img src="./media/Apps/vbs.png"><p class="appName">BDAY</p></a> </td>
+			<td> <a href="SONIC/"><img src="./media/Apps/sonicgamer.png"><p class="appName">SONIC</p></a> </td>
 		</tr>
 	</table>
 	<footer>

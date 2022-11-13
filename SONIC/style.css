@@ -1,11 +1,8 @@
 ul {
+	list-style: none;
 	position:relative;
 	float: left;
-	left: -13px;
-	width: 100px;
-}
-div {
-	width: 680px;
+	padding-left: 4.2%;
 }
 .bronp{
 	color: White;
