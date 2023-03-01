@@ -8,6 +8,9 @@ const Dates = new Set([
 17  + 8 *31,
 1 + 2*31 ]);
 
+const Names = new Map();
+Names.set(1 + 2*31,'poccu4!! !');
+
 let ctx = null;
 
 class Vector2 extends Array {
@@ -254,7 +257,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			}
 		},new Vector2(w*.75+30,h*.25)));
 		
-		c.innerHTML = '<a href=\"javascript:document.getElementById(\'thanks\').play();window.party();\"><img src="../media/birthda/happ.gif"></img></a><br><center>To someone i know.</center>';
+		let bottomtext = 'To someone i know.';
+		let d = new Date();
+		if (Names.get(d.getDate()+d.getMonth()*31)) bottomtext=Names.get(d.getDate()+d.getMonth()*31)
+		
+		c.innerHTML = '<a href=\"javascript:document.getElementById(\'thanks\').play();window.party();\"><img src="../media/birthda/happ.gif"></img></a><br><center>'+bottomtext+'</center>';
 		
 	}
 });
