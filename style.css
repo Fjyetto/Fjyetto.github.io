@@ -1,5 +1,10 @@
+table {
+	border-collapse: initial;
+}
+
 table > tbody > tr > * {
 	height: auto;
+	padding: 2px 2px;
 }
 
 tbody {
