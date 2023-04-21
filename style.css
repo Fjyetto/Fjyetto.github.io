@@ -1,5 +1,6 @@
 table {
 	border-collapse: initial;
+	background-color: #386FA7;
 }
 
 table > tbody > tr > * {
