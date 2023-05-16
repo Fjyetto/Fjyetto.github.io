@@ -6,10 +6,12 @@ const Dates = new Set([
 11  + 11 *31,
 27  + 11 *31,
 17  + 8 *31,
+17  + 4 *31,
 1 + 2*31 ]);
 
 const Names = new Map();
 Names.set(1 + 2*31,'poccu4!! !');
+Names.set(17 + 4*31,'MUSHROOM KINGTOM');
 
 let ctx = null;
 
