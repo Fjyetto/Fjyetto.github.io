@@ -15,6 +15,7 @@ tbody {
 body {
 	background-color: #386FA7;
 	background-repeat: repeat-x;
+	/*background-image: url("/media/Clouds.png");*/
 	font-family: 'Inter', sans-serif;
 	font-size:13px;
 	position: relative;
