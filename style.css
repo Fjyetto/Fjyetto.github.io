@@ -1,6 +1,5 @@
 table {
 	border-collapse: initial;
-	background-color: #386FA7;
 }
 
 table > tbody > tr > * {
@@ -8,14 +7,12 @@ table > tbody > tr > * {
 	padding: 2px 2px;
 }
 
-tbody {
-	background-color: #386FA7;
-}
-
 body {
-	background-color: #386FA7;
-	background-repeat: repeat-x;
-	/*background-image: url("/media/Clouds.png");*/
+	/*background-color: #386FA7;
+	background-repeat: repeat-x;*/
+	background-image: url("/media/Clouds.png");
+	background-size: cover;
+	image-rendering: pixelated;
 	font-family: 'Inter', sans-serif;
 	font-size:13px;
 	position: relative;
