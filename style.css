@@ -139,5 +139,8 @@ footer{
 }
 .appsy > * {
 	text-decoration: none;
+}
+
+.appsy {
 	background-color: rgba(0,0,0,0);
 }
