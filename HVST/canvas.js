@@ -51,6 +51,14 @@ class Particle{
 	}
 }
 
+const gamepads = {};
+
+window.addEventListener("gamepadconnected", (e) => {
+	gamepad = e.gamepad;
+	gamepads[gamepad.index]=gamepad;
+	alert("Gamepad connected at index "+gamepad.index+": "+gamepad.id+". "+gamepad.buttons.length+" buttons, "+gamepad.axes.length+" axes.");
+});
+
 document.addEventListener("DOMContentLoaded", function(event) { 
 	const butt = document.getElementById("StartButton");
 	const OwSfx = document.getElementById("OwSfx");
@@ -407,4 +415,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 	});
 	
+	if (navigator.getGamepads().length){
+		if (navigator.getGamepads[0].axes.length>0){
+			alert("IM READING YOUR SHIT!!"+navigator.getGamepads[0].axes[0]);
+			let x = navigator.getGamepads[0].axes[0];
+			if (x>0.75 || x<-0.75){
+				pvx+=x*48*secondsPassed;
+			}
+		}
+	}
 });
