@@ -3,7 +3,7 @@ table {
 }
 
 table > tbody > tr > * {
-	height: auto;
+	height: 64px;
 	padding: 2px 2px;
 }
 
