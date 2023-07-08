@@ -49,12 +49,12 @@ p{
 .inset {
 	background-color: #FFFFFF;
 	border: 6px solid transparent;
-	border-image: url("media/Bordertest.png") 6 round;
+	border-image: url("/media/Bordertest.png") 6 round;
 }
 .crazinset {
 	background-color: #FFFFFF;
 	border: 3px solid transparent;
-	border-image: url("media/Bordert3.png") 3 round;
+	border-image: url("/media/Bordert3.png") 3 round;
 }
 .winbor {
 	background-color: #D7D0C8;
@@ -64,7 +64,7 @@ p{
 .outset {
 	background-color: #D7D0C8;
 	border: 2px solid transparent;
-	border-image: url("media/Bordert21.png") 2 round;
+	border-image: url("/media/Bordert21.png") 2 round;
 }
 
 .top {
