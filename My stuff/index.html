@@ -28,7 +28,7 @@
 		}
 		.flexContainer > img:hover{
 			object-position: 75%;
-			transition: object-position 1s;
+			transition: object-position 0.5s;
 		}
 		</style>
     </head>
@@ -42,7 +42,7 @@
 				</div>
 				<div style="display:flex; justify-content:space-between; flex-direction:column;">
 					<h2>This is a pile of random images I have created.</h2>
-					<div class="flexContainer">
+					<div class="flexContainer" id="crashba">
 						<img src="mergo.jpg">
 						<img src="the scrotsons.jpg">
 						<img src="roblox player.jpg">
@@ -54,7 +54,7 @@
 					</div>
 					<script>
 // Get the image container element
-const imageContainer = document.getElementById('flexContainer');
+const imageContainer = document.getElementById('crashba');
 
 // Add event listener for mousemove event on the image container
 imageContainer.addEventListener('mousemove', handleMouseMove);
@@ -82,8 +82,8 @@ function handleMouseMove(event) {
 
 // Function to get cursor position relative to the image's center
 function getCursorPosition(event, imageRect) {
-  const cursorX = event.clientX - imageRect.left;
-  const cursorY = event.clientY - imageRect.top;
+  const cursorX = event.offsetX;
+  const cursorY = event.offsetY;
 
   // Calculate the position relative to the image's center
   const positionX = cursorX - imageRect.width / 2;
