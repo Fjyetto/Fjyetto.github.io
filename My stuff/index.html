@@ -8,10 +8,7 @@
 		
 		<link rel="stylesheet" href="https://unpkg.com/98.css" />
 		<link rel="stylesheet" href="../style.css">
-		<link rel="stylesheet" href="style.css">
 		
-		<script src="canvas.js"></script>
-		<script src="CheckMobile.js"></script>
 		<style>
 		.flexContainer {
 			display:flex;
@@ -55,6 +52,54 @@
 						<img src="cirnogoog.gif">
 						<img src="3dgoog.gif">
 					</div>
+					<script>
+// Get the image container element
+const imageContainer = document.getElementById('flexContainer');
+
+// Add event listener for mousemove event on the image container
+imageContainer.addEventListener('mousemove', handleMouseMove);
+
+// Function to handle mousemove event
+function handleMouseMove(event) {
+  // Get the target element (image) being hovered
+  const targetImage = event.target;
+
+  // Check if the target element is an image within the image container
+  if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
+    // Get the image's position and dimensions
+    const imageRect = targetImage.getBoundingClientRect();
+
+    // Get the cursor position relative to the image's center
+    const cursorPosition = getCursorPosition(event, imageRect);
+
+    // Normalize the cursor position
+    const normalizedPosition = normalizeCursorPosition(cursorPosition);
+
+    // Use the normalized position as needed
+    console.log('Normalized Cursor Position:', normalizedPosition);
+  }
+}
+
+// Function to get cursor position relative to the image's center
+function getCursorPosition(event, imageRect) {
+  const cursorX = event.clientX - imageRect.left;
+  const cursorY = event.clientY - imageRect.top;
+
+  // Calculate the position relative to the image's center
+  const positionX = cursorX - imageRect.width / 2;
+  const positionY = cursorY - imageRect.height / 2;
+
+  return { x: positionX, y: positionY };
+}
+
+// Function to normalize cursor position from -1 to 1
+function normalizeCursorPosition(cursorPosition) {
+  const normalizedX = cursorPosition.x / imageRect.width;
+  const normalizedY = cursorPosition.y / imageRect.height;
+
+  return { x: normalizedX, y: normalizedY };
+}
+					</script>
 				</div>
 			</div>
 		</center>
