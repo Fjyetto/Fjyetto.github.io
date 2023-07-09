@@ -20,15 +20,16 @@
 			border: 1px solid;
 			margin: 1px;
 			
-			flex: 1 0 auto;
+			flex: 1 0 13%;
 			
-			max-width: 360px; /* Adjust the maximum width as per your requirement */
+			max-width: 480px; /* Adjust the maximum width as per your requirement */
 			object-fit: cover;
-			object-position: 50%;;
+			object-position: 50%;
+			transition: object-position 0.5s;
 		}
 		.flexContainer > img:hover{
-			object-position: 75%;
-			transition: object-position 0.5s;
+			object-position: var(--img-offs);
+			transition: object-position 0.12s;
 		}
 		</style>
     </head>
@@ -51,6 +52,8 @@
 						<img src="kirby.png">
 						<img src="cirnogoog.gif">
 						<img src="3dgoog.gif">
+						<img src="dingus.gif">
+						<img src="hislies.png">
 					</div>
 					<script>
 // Get the image container element
@@ -73,10 +76,12 @@ function handleMouseMove(event) {
     const cursorPosition = getCursorPosition(event, imageRect);
 
     // Normalize the cursor position
-    const normalizedPosition = normalizeCursorPosition(cursorPosition);
+    const normalizedPosition = normalizeCursorPosition(cursorPosition, imageRect);
 
     // Use the normalized position as needed
-    console.log('Normalized Cursor Position:', normalizedPosition);
+    //console.log('Normalized Cursor Position:', normalizedPosition);
+	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
+	targetImage.style.setProperty('--img-offs',Math.floor(normalizedPosition.x*100)+"%")
   }
 }
 
@@ -92,10 +97,10 @@ function getCursorPosition(event, imageRect) {
   return { x: positionX, y: positionY };
 }
 
-// Function to normalize cursor position from -1 to 1
-function normalizeCursorPosition(cursorPosition) {
-  const normalizedX = cursorPosition.x / imageRect.width;
-  const normalizedY = cursorPosition.y / imageRect.height;
+// Function to normalize cursor position from 0 to 1
+function normalizeCursorPosition(cursorPosition, imageRect) {
+  const normalizedX = cursorPosition.x / imageRect.width+0.5;
+  const normalizedY = cursorPosition.y / imageRect.height+0.5;
 
   return { x: normalizedX, y: normalizedY };
 }
