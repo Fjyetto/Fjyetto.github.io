@@ -16,7 +16,6 @@
 			justify-content: center;
 		}
 		.flexContainer > img {
-			/*flex:1;*/
 			border: 1px solid;
 			margin: 1px;
 			
@@ -82,8 +81,8 @@ function handleMouseMove(event) {
     // Use the normalized position as needed
     //console.log('Normalized Cursor Position:', normalizedPosition);
 	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
-	const nx = Math.floor(100+normalizedPosition.x*-100);
-	const ny = Math.floor(100+normalizedPosition.y*-100);
+	const nx = Math.floor(normalizedPosition.x*-100)+50;
+	const ny = Math.floor(normalizedPosition.y*-100)+50;
 	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
   }
 }
@@ -100,14 +99,14 @@ function getCursorPosition(event, imageRect) {
   return { x: positionX, y: positionY };
 }
 
-// Function to normalize cursor position from 0 to 1
+// Function to normalize cursor position from -0.5 to 0.5
 function normalizeCursorPosition(cursorPosition, imageRect) {
-  const normalizedX = cursorPosition.x / imageRect.width+0.5;
-  const normalizedY = cursorPosition.y / imageRect.height+0.5;
+  const normalizedX = cursorPosition.x / imageRect.width;
+  const normalizedY = cursorPosition.y / imageRect.height;
 
   return { x: normalizedX, y: normalizedY };
 }
-					</script>
+					</script> 
 				</div>
 			</div>
 		</center>
