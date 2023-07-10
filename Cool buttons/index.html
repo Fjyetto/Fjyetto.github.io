@@ -50,19 +50,17 @@
 		
 		#infoBub {
 			position: absolute;
-			opacity: 0%;
-			transition: opacity 0.8s;
-			user-select: none;
+			visibility: hidden;
 		}
 		</style>
     </head>
 
-    <body style="margin: 24px; overflow-x:hidden;">
+    <body style="margin: 24px;">
 		<div id="infoBub">
 		<table style="background-color:#FFFFDE; border: solid 1px black; border-radius: 6px; padding:1px 6px;">
-		<tr><td style="height:auto; transform: translate(1px,1px);"><img src="/media/info.png"></td><td><strong>Fancy tooltip</strong></td></tr>
+		<tr><td style="height:auto; transform: translate(1px,1px);"><img src="/media/info.png"></td><td><strong>Context giver 3000</strong></td></tr>
 		<tr>
-		<td colspan="2" id="context">To learn about the exciting new features in XP now, click here.</td>
+		<td colspan="2">To learn about the exciting new features in XP now, click here.</td>
 		</tr></table>
 		</div>
 		<center>
@@ -87,81 +85,42 @@
 						<img src="doag.gif" alt="Scratch PFP">
 						<img src="gunchus dev.png" alt="CannyGunch">
 						<img src="real dog.jpg" alt="Walter if he was a man">
-						<img src="sam nft.jpg" alt="The Sam NFT">
+						<img src="sam nft.jpg" alt="Sam NFT">
 						<img src="pogg.png" alt="Whiteout POG">
-						<img src="turnip man epic.png" alt="Turnip man">
+						<img src="turnip man epic.png" alt="Turnip Man">
 						<img src="jesus dog.png" alt="Floating dog">
 					</div>
 					<script> 
-const infoBub = document.getElementById("infoBub");
-const ct = document.getElementById("context");
+// Get the image container element
 const imageContainer = document.getElementById('crashba');
-let clientX,clientY;
 
-//imageContainer.parentNode.addEventListener('mousemove', handleMouseMove);
-document.addEventListener('mousemove', handleMouseMove);
+// Add event listener for mousemove event on the image container
+imageContainer.addEventListener('mousemove', handleMouseMove);
 
-function mloop(){
-	infoBub.style.left = `${clientX-16}px`;
-	infoBub.style.top = `${clientY-24}px`;
-	if (Date.now()-startTime>2400 && hov.tagName == 'IMG' && !shown){
-		infoBub.style.opacity = "100%";
-		ct.innerHTML = hov.alt
-		shown=true;
-	}
-	requestAnimationFrame(mloop);
-}
-requestAnimationFrame(mloop);
+var startTime, endTime;
 
-let startTime, hov;
-let lastX = 0;
-let shown = false;
-
-function isElementChildOf(element, par) {
-  let parent = element.parentNode;
-
-  while (parent !== null) {
-    if (parent === par) {
-      return true;
-    }
-    parent = parent.parentNode;
-  }
-
-  return false;
-}
-
+// Function to handle mousemove event
 function handleMouseMove(event) {
-	const targetImage = event.target;
-	clientY = event.pageY;
-	clientX = event.pageX;
-	
-	console.log(isElementChildOf(targetImage,infoBub));
-	
-	if (( hov != targetImage || targetImage.tagName != 'IMG' ) && ( !isElementChildOf(targetImage,infoBub) )){
-		hov = targetImage;
-		startTime = Date.now();
-		infoBub.style.opacity = "0%";
-		shown=false;
-	} 
-	
-	if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
-		
-		const imageRect = targetImage.getBoundingClientRect();
+  // Get the target element (image) being hovered
+  const targetImage = event.target;
 
-		const cursorPosition = getCursorPosition(event, imageRect);
+  // Check if the target element is an image within the image container
+  if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
+    
+    const imageRect = targetImage.getBoundingClientRect();
 
-		const normalizedPosition = normalizeCursorPosition(cursorPosition, imageRect);
+    const cursorPosition = getCursorPosition(event, imageRect);
 
-		// Use the normalized position as needed
-		//console.log('Normalized Cursor Position:', normalizedPosition);
-		//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
-		const nx = Math.floor(normalizedPosition.x*-100)+50;
-		const ny = Math.floor(normalizedPosition.y*-100)+50;
-		targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
-		
-	}
+    const normalizedPosition = normalizeCursorPosition(cursorPosition, imageRect);
+
+    // Use the normalized position as needed
+    //console.log('Normalized Cursor Position:', normalizedPosition);
+	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
+	const nx = Math.floor(normalizedPosition.x*-100)+50;
+	const ny = Math.floor(normalizedPosition.y*-100)+50;
+	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
 	
-	
+  }
 }
 
 // Function to get cursor position relative to the image's center

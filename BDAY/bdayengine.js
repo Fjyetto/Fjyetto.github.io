@@ -193,8 +193,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	}
 	
 	function draw(){
-		ctx.fillStyle = "#386FA7";
-		ctx.fillRect(0,0,w,h);
+		//ctx.fillStyle = "rgba(0,0,0,0)";
+		//ctx.fillRect(0,0,w,h);
+		ctx.clearRect(0,0,w,h);
 		
 		Balons.forEach((b,i)=>{
 			b.Draw();
