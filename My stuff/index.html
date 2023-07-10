@@ -12,17 +12,33 @@
 		<style>
 		.flexContainer {
 			display:flex;
-			flex-wrap: wrap;
+			/*flex-wrap: wrap;*/
+			flex-flow: wrap row;
 			justify-content: center;
 		}
+		
+		/* Re-order items into rows */
+		.flexContainer > img:nth-child(3n+1) { order: 1; }
+		.flexContainer > img:nth-child(3n+2) { order: 2; }
+		.flexContainer > img:nth-child(3n)   { order: 3; }
+
+		/* Force new columns */
+		.flexContainer::before,
+		.flexContainer::after {
+		  content: "";
+		  flex-basis: 100%;
+		  width: 0;
+		  order: 2;
+		}
+		
 		.flexContainer > img {
 			border: 1px solid;
 			margin: 1px;
 			
 			flex: 1 0 13%;
 			
-			max-width: 480px; /* Adjust the maximum width as per your requirement */
-			max-height: 360px;
+			/*max-width: 480px; 
+			max-height: 360px; */
 			object-fit: cover;
 			object-position: 50% 50%;
 			transition: object-position 0.5s;
