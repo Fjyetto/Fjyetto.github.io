@@ -47,10 +47,22 @@
 			object-position: var(--img-offs);
 			transition: object-position 0.12s;
 		}
+		
+		#infoBub {
+			position: absolute;
+			visibility: hidden;
+		}
 		</style>
     </head>
 
     <body style="margin: 24px;">
+		<div id="infoBub">
+		<table style="background-color:#FFFFDE; border: solid 1px black; border-radius: 6px; padding:1px 6px;">
+		<tr><td style="height:auto; transform: translate(1px,1px);"><img src="/media/info.png"></td><td><strong>Context giver 3000</strong></td></tr>
+		<tr>
+		<td colspan="2">To learn about the exciting new features in XP now, click here.</td>
+		</tr></table>
+		</div>
 		<center>
 			<div class="window" style="width:100%;">
 				<div style="justify-content:left;" class="title-bar">
@@ -71,12 +83,14 @@
 						<img src="dingus.gif" alt="Dongus gif">
 						<img src="hislies.png" alt="Googa Lore">
 					</div>
-					<!-- <script> 
+					<script> 
 // Get the image container element
 const imageContainer = document.getElementById('crashba');
 
 // Add event listener for mousemove event on the image container
 imageContainer.addEventListener('mousemove', handleMouseMove);
+
+var startTime, endTime;
 
 // Function to handle mousemove event
 function handleMouseMove(event) {
@@ -85,13 +99,11 @@ function handleMouseMove(event) {
 
   // Check if the target element is an image within the image container
   if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
-    // Get the image's position and dimensions
-    const imageRect = targetImage.getBoundingClientRect();
+    
+    /*const imageRect = targetImage.getBoundingClientRect();
 
-    // Get the cursor position relative to the image's center
     const cursorPosition = getCursorPosition(event, imageRect);
 
-    // Normalize the cursor position
     const normalizedPosition = normalizeCursorPosition(cursorPosition, imageRect);
 
     // Use the normalized position as needed
@@ -99,10 +111,11 @@ function handleMouseMove(event) {
 	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
 	const nx = Math.floor(normalizedPosition.x*-100)+50;
 	const ny = Math.floor(normalizedPosition.y*-100)+50;
-	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
+	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")*/
+	
   }
 }
-
+/*
 // Function to get cursor position relative to the image's center
 function getCursorPosition(event, imageRect) {
   const cursorX = event.offsetX;
@@ -121,8 +134,8 @@ function normalizeCursorPosition(cursorPosition, imageRect) {
   const normalizedY = cursorPosition.y / imageRect.height;
 
   return { x: normalizedX, y: normalizedY };
-}
-					</script> -->
+}*/
+					</script>
 				</div>
 			</div>
 		</center>
