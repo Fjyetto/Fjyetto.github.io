@@ -100,7 +100,7 @@ function handleMouseMove(event) {
   // Check if the target element is an image within the image container
   if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
     
-    /*const imageRect = targetImage.getBoundingClientRect();
+    const imageRect = targetImage.getBoundingClientRect();
 
     const cursorPosition = getCursorPosition(event, imageRect);
 
@@ -111,11 +111,11 @@ function handleMouseMove(event) {
 	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
 	const nx = Math.floor(normalizedPosition.x*-100)+50;
 	const ny = Math.floor(normalizedPosition.y*-100)+50;
-	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")*/
+	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
 	
   }
 }
-/*
+
 // Function to get cursor position relative to the image's center
 function getCursorPosition(event, imageRect) {
   const cursorX = event.offsetX;
@@ -134,7 +134,7 @@ function normalizeCursorPosition(cursorPosition, imageRect) {
   const normalizedY = cursorPosition.y / imageRect.height;
 
   return { x: normalizedX, y: normalizedY };
-}*/
+}
 					</script>
 				</div>
 			</div>
