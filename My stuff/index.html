@@ -23,8 +23,9 @@
 			flex: 1 0 13%;
 			
 			max-width: 480px; /* Adjust the maximum width as per your requirement */
+			max-height: 360px;
 			object-fit: cover;
-			object-position: 50%;
+			object-position: 50% 50%;
 			transition: object-position 0.5s;
 		}
 		.flexContainer > img:hover{
@@ -81,7 +82,9 @@ function handleMouseMove(event) {
     // Use the normalized position as needed
     //console.log('Normalized Cursor Position:', normalizedPosition);
 	//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
-	targetImage.style.setProperty('--img-offs',Math.floor(normalizedPosition.x*100)+"%")
+	const nx = Math.floor(100+normalizedPosition.x*-100);
+	const ny = Math.floor(100+normalizedPosition.y*-100);
+	targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
   }
 }
 
