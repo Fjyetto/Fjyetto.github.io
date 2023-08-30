@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/mi1ZX3n5Nbo?si=rPhX2GmVK80lz7WT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="left: 50%;position: relative;transform: translateX(-50%);"></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/mi1ZX3n5Nbo?si=rPhX2GmVK80lz7WT?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="left: 50%;position: relative;transform: translateX(-50%);"></iframe>
 			
 			</div>
 			<div class="status-bar">
@@ -74,6 +74,7 @@ function GameDetails(sn,su,mnt,maxp,sid,gm,v,l){
 function SetStatusChanged( status ) {
 	document.getElementById("Status").innerHTML = status;
 	document.getElementById("Status2").innerHTML = status;
+	if (status=="Lua starting...") document.getElementById("fjload").src = "/media/fjdanc.gif";
 }
 
 function SetFilesTotal(total){
@@ -81,8 +82,8 @@ function SetFilesTotal(total){
 }
 
 function SetFilesNeeded(needed){
-	document.getElementById("bar").style.width = (needed/ft)*100+"%"
-	if (needed==ft) {
+	document.getElementById("bar").style.width = Math.min(1,(needed/ft-10))*100+"%"
+	if (needed>=ft-10) {
 		document.getElementById("fjload").src = "/media/fjdanc.gif"
 	}
 }
