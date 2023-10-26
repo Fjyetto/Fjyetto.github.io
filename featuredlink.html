@@ -16,19 +16,25 @@
 		<meta content="https://papatomique.github.io/media/Apps/text.png" property="og:image" />
 		<meta content="#FFFFFF" data-react-helmet="true" name="theme-color" />
 	</head>
-	<body>
-		<div class="window" style="width: min-content; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;">
+	<body style="margin:0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <div class="window" style="width: min-content; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;"> 
 			<div style="justify-content:left;" class="title-bar">
 				<img src="media/Apps/notepadicon.png">
 				<div class="title-bar-text" style="padding-left:6px;">Featured Link</div>
-			</div>
-			<div class="window-body">
+			</div>-->
+			<div class="window-body" >
 				<p>Last update: 13/10/2023<br><a href="https://tofokyo.com/">Featured: <em>Tofokyo's website</em></a><br>
 It's just so good</p>
 			</div>
 		</div>
-		<div class="taskbar">
-			<a class="startbutton" href="index.html"></a>
-		</div>
+<script>
+const pageInfo = {
+	width: Math.max(document.body.scrollWidth,100)+"px",
+	height: Math.max(document.body.scrollHeight,100)+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 	</body>
 </html>
