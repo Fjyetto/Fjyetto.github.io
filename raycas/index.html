@@ -14,13 +14,13 @@
 		<link rel="stylesheet" href="../style.css">
 		
 	</head>
-	<body>
-		<center>
+	<body style="margin: 0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <center>
 			<div class="window" style="width:600px;">
 				<div style="justify-content:left;" class="title-bar">
 					<img src="../media/Apps/BFicon.png">
 					<div class="title-bar-text" style="padding-left:6px;">Ballfinder</div>
-				</div>
+				</div> -->
 				<div style="display:flex; justify-content:space-between;margin-top:5px;">
 					<ul style="width:150px;">
 						<li>Balls: 0/0</li>
@@ -31,8 +31,17 @@
 				</div>
 			</div>
 		</center>
-		<div class="taskbar">
+		<!-- <div class="taskbar">
 			<a class="startbutton" href="../index.html"></a>
-		</div>
+		</div> -->
+<script>
+const pageInfo = {
+	width: "600px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 	</body>
 </html>

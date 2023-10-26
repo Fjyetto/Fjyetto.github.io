@@ -102,5 +102,14 @@ function yah(){
 
 window.requestAnimationFrame(yah);
 </script>
+<script>
+const pageInfo = {
+	width: "800px",
+	height: "600px",
+	title: document.title,
+	icon: '/media/Apps/peter.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 	</body>
 </html>

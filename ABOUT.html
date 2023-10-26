@@ -16,12 +16,12 @@
 		<meta content="https://papatomique.github.io/media/Apps/ABOUT.png" property="og:image" />
 		<meta content="#FFFFFF" data-react-helmet="true" name="theme-color" />
 	</head>
-	<body>
-		<div class="window" style="width: 30%; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;">
+	<body style="margin:0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <div class="window" style="width: 30%; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;"> 
 			<div style="justify-content:left;" class="title-bar">
 				<img src="media/Apps/notepadicon.png">
 				<div class="title-bar-text" style="padding-left:6px;">ABOUT</div>
-			</div>
+			</div>-->
 			<div class="window-body">
 				<p>
 					hello im fjyetto you may also know me as papatomique<br>
@@ -65,9 +65,19 @@
 					</div>
 				</p>
 			</div>
-		</div>
-		<div class="taskbar">
+		<!-- </div> -->
+		<!-- <div class="taskbar"> 
 			<a class="startbutton" href="index.html"></a>
-		</div>
+		 </div> -->
+<script>
+let w = (document.body.scrollHeight/3)*4
+const pageInfo = {
+	width: w+"px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 	</body>
 </html>

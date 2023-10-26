@@ -25,13 +25,13 @@
 		</style>
     </head>
 
-    <body style="margin: 24px;">
-		<center>
+    <body style="margin: 24px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <center>
 			<div class="window" style="width:70%;">
 				<div style="justify-content:left;" class="title-bar">
 					<img src="../media/Apps/Foldericon.png">
 					<div class="title-bar-text" style="padding-left:6px;">Cool buttons</div>
-				</div>
+				</div> -->
 				<div style="display:flex; justify-content:space-between; flex-direction:column;">
 					<fieldset style="margin-top:10px;"> <legend>These are cool buttons.</legend>
 					<div class="flexContainer" id="crashba">
@@ -62,11 +62,13 @@
 						<a href="https://wiishopchannel.neocities.org" title="Wii Shop Channel Remake" target="_blank">
       <img src="https://wiishopchannel.neocities.org/button.gif" alt="Wii Shop Channel Remake">
     </a>
+	<a href="https://big.gunchus.zip/"><img src="https://big.gunchus.zip/media/buttons/gunchusbutton.gif" width="88" height="31" alt="Big Gunchus" title="Big Gunchus"></a>
+						
 					</div>
 					</fieldset>
 				</div>
-			</div>
-		</center>
+			<!-- </div> 
+		</center>-->
 		<style>
 		.blink_text
 		{
@@ -97,8 +99,14 @@
 			100% { opacity: 1.0; }
 		 }
 		</style>
-		<div class="taskbar">
-			<a class="startbutton" href="../index.html"></a>
-		</div>
+<script>
+const pageInfo = {
+	width: (document.body.scrollWidth+88)+"px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
     </body>
 </html>

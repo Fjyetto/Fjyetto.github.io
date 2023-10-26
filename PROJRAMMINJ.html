@@ -26,12 +26,12 @@
 		</style>
 		
 	</head>
-	<body>
-		<div class="window" style="width: 60%; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;">
+	<body style="margin:0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <div class="window" style="width: 60%; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;"> 
 			<div style="justify-content:left;" class="title-bar">
 				<img src="media/Apps/notepadicon.png">
 				<div class="title-bar-text" style="padding-left:6px;">Projramminj</div>
-			</div>
+			</div>-->
 			<div class="funyn">
 				<center>
 				<h3>I will now take you through my developing journey.</h3>
@@ -80,8 +80,18 @@
 				<p>My <a href="https://github.com/Fjyetto/">Github</a></p>
 			</div>
 		</div>
-		<div class="taskbar">
+		<!-- <div class="taskbar"> 
 			<a class="startbutton" href="index.html"></a>
-		</div>
+		</div> -->
+<script>
+const pageInfo = {
+	width: document.body.scrollWidth+"px",
+	height: Math.min(document.body.scrollHeight,600)+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png',
+	overflow: true
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 	</body>
 </html>

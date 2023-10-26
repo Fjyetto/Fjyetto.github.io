@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>HVST</title>
+        <title>Homer VS. Trool</title>
 		<link rel="icon" type="image/x-icon" href="../media/Apps/HVSTicon.png">
 		
 		<link rel="stylesheet" href="https://unpkg.com/98.css" />
@@ -14,7 +14,7 @@
 		<script src="CheckMobile.js"></script>
     </head>
 
-    <body>
+    <body style="margin: 0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
 		<img src="tf.png" id="trof" class="asset">
 		<img src="star.png" id="star" class="asset">
 		<img src="starb.png" id="starb" class="asset">
@@ -25,13 +25,13 @@
 		<img src="../media/lose.png" id="loser" class="asset">
 		<img src="../media/homerwin.png" id="winner" class="asset">
 		<img src="../media/screen.png" id="titles" class="asset">
-		<br>
+		<!-- <br> 
 		<center>
 			<div class="window" style="width:512px;">
 				<div style="justify-content:left;" class="title-bar">
 					<img src="../media/Apps/HVSTicon.png">
 					<div class="title-bar-text" style="padding-left:6px;">Homer VS. Trool</div>
-				</div>
+				</div>-->
 				<div style="display:flex; justify-content:space-between;">
 					<ul style="width:100px;">
 						<li><button type="button" id="StartButton">Start</button></li>
@@ -60,9 +60,18 @@
 				  <source src="../media/faint_courage.mp3" type="audio/mpeg">
 				</audio>
 			</div>
-		</center>
+<script>
+const pageInfo = {
+	width: "512px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
+		<!-- </center>
 		<div class="taskbar">
 			<a class="startbutton" href="../index.html"></a>
-		</div>
+		</div> -->
     </body>
 </html>

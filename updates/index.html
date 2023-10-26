@@ -24,16 +24,20 @@
 		</style>
 		
 	</head>
-<body>
-	<div class="window" style="width:50%; left:25%; position:absolute;">
+<body style="margin:4px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+	<!-- <div class="window" style="width:50%; left:25%; position:absolute;"> 
 			<div style="justify-content:left;" class="title-bar">
 				<img src="../media/Apps/notepadicon.png">
 				<div class="title-bar-text" style="padding-left:6px;">updates</div>
-			</div>
+			</div>-->
 			<table style="width:100%;background-color:#D7D0C8;">
 				<tr>
 					<td class="outset">Date</td>
 					<td class="outset">Change</td>
+				</tr>
+				<tr>
+					<td class="crazinset">26-10-2023</td>
+					<td class="crazinset">most pages are now iframes you can access from the main page, like real windows! :D<br>also, added peter!</a></td>
 				</tr>
 				<tr>
 					<td class="crazinset">12-07-2023</td>
@@ -101,11 +105,20 @@
 				</tr>
 			</table>
 		</div>
-	<footer>
+	<!--<footer>
 		<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
 	</footer>
 	<div class="taskbar">
 		<a class="startbutton" href="../"></a>
-	</div>
+	</div> -->
+	<script>
+const pageInfo = {
+	width: document.body.scrollWidth+"px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
 </body>
 </html>
