@@ -101,13 +101,16 @@
 		 }
 		</style>
 <script>
-const pageInfo = {
-	width: (document.body.scrollWidth+88)+"px",
-	height: document.body.scrollHeight+"px",
-	title: document.title,
-	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
-};
-parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+    console.log('images finished loading');
+	const pageInfo = {
+		width: (document.body.scrollWidth+88)+"px",
+		height: document.body.scrollHeight+"px",
+		title: document.title,
+		icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+	};
+	parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+});
 </script>
     </body>
 </html>
