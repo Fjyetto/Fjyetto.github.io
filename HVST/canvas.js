@@ -1,3 +1,7 @@
+window.onmessage = function (event) {
+	console.log(event.data)
+};
+
 var on = false;
 
 function rad(deg)
@@ -169,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				bh: BH,
 				ph: Lives
 			}
-			window.postMessage(JSON.stringify(gamestate));
+			parent.postMessage(JSON.stringify(gamestate));
 			off();
 			GMS.currentTime = 0;
 			GMS.play();
@@ -181,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				bh: BH,
 				ph: Lives
 			}
-			window.postMessage(JSON.stringify(gamestate));
+			parent.postMessage(JSON.stringify(gamestate));
 			off();
 			WSfx.play();
 			ctx.drawImage(winner,0,0)
