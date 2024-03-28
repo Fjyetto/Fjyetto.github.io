@@ -164,12 +164,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	
 	function update(progress) {
 		if (Lives<=0){
+			const gamestate = {
+				time : Math.floor((tick()-Start)/100)/10,
+				bh: BH,
+				ph: Lives
+			}
+			window.postMessage(JSON.stringify(gamestate));
 			off();
 			GMS.currentTime = 0;
 			GMS.play();
 			ctx.drawImage(loser,0,0)
 		}
 		if (BH<=0){
+			const gamestate = {
+				time : Math.floor((tick()-Start)/100)/10,
+				bh: BH,
+				ph: Lives
+			}
+			window.postMessage(JSON.stringify(gamestate));
 			off();
 			WSfx.play();
 			ctx.drawImage(winner,0,0)
