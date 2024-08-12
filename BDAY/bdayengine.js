@@ -9,7 +9,8 @@ const Dates = new Set([
 17  + 8 *31,
 17  + 4 *31,
 1 + 2*31,
-30 + 4*31 ]);
+30 + 4*31,
+13 + 7*31 ]);
 
 const Names = new Map();
 Names.set(1 + 2*31,'poccu4!! !');
