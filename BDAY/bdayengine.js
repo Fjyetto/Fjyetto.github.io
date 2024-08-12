@@ -264,7 +264,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			}
 		},new Vector2(w*.75+30,h*.25)));
 		
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+
 		let bottomtext = 'To someone i know.';
+
+		if (urlParams.get("name")!=null){
+			bottomtext = 'To '+urlParams.get("name");
+		}
+		
+		console.log(bottomtext);
+		
+		
 		let d = new Date();
 		if (Names.get(d.getDate()+d.getMonth()*31)) bottomtext=Names.get(d.getDate()+d.getMonth()*31)
 		
