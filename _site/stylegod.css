@@ -1,0 +1,34 @@
+body {
+	/*font-family: "Host Grotesk", serif;*/
+	font-family: Helvetica, Arial, sans-serif;
+	font-optical-sizing: auto;
+	font-weight: <weight>;
+	font-style: normal;
+	color: #112;
+	/*text-shadow: 1px 0px 2px rgba(46,56,86,0.13);*/
+	background-image: url("/wo.png");
+	background-color: #DCDCDC;
+	text-align: center;
+}
+article{
+	margin: 7px;
+	padding: 0px 3px;
+	border: 1px solid black;
+	box-shadow: 4px 3px 2px 0px rgba(10,10,15,0.2);
+	background: #ededda;
+}
+hr {
+	border: none;
+  	border-bottom: 1px dotted black;
+}
+marquee{
+	border: 1px inset white;
+	padding: 3px 2px;
+	background-color: #000;
+	color: #f00;
+	font-family: monospace;
+	margin-left:auto !important;
+}
+.nbar > * {
+	margin:10px;
+}

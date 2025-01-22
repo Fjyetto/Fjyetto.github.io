@@ -1,0 +1,194 @@
+<!-- HVST -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>My stuff</title>
+		<link rel="icon" type="image/x-icon" href="../media/Apps/Foldericon.png">
+		
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
+		<link rel="stylesheet" href="../style.css">
+		
+		<style>
+		.flexContainer {
+			display:flex;
+			/*flex-wrap: wrap;*/
+			flex-flow: wrap row;
+			justify-content: center;
+		}
+		
+		/* Re-order items into rows */
+		.flexContainer > img:nth-child(3n+1) { order: 1; }
+		.flexContainer > img:nth-child(3n+2) { order: 2; }
+		.flexContainer > img:nth-child(3n)   { order: 3; }
+
+		/* Force new columns */
+		.flexContainer::before,
+		.flexContainer::after {
+		  content: "";
+		  flex-basis: 100%;
+		  width: 0;
+		  order: 2;
+		}
+		
+		.flexContainer > img {
+			border: 1px solid;
+			margin: 1px;
+			
+			flex: 1 0 13%;
+			
+			/*max-width: 480px; 
+			max-height: 360px; */
+			object-fit: cover;
+			object-position: 50% 50%;
+			transition: object-position 0.5s;
+		}
+		.flexContainer > img:hover{
+			object-position: var(--img-offs);
+			transition: object-position 0.12s;
+		}
+		
+		#infoBub {
+			position: absolute;
+			opacity: 0%;
+			transition: opacity 0.8s;
+			user-select: none;
+		}
+		</style>
+    </head>
+
+    <body style="margin: 24px; overflow-x:hidden;">
+		<div id="infoBub">
+		<table style="background-color:#FFFFDE; border: solid 1px black; border-radius: 6px; padding:1px 6px;">
+		<tr><td style="height:auto; transform: translate(1px,1px);"><img src="/RETROWORLD/media/info.png"></td><td><strong>Fancy tooltip</strong></td></tr>
+		<tr>
+		<td colspan="2" id="context">To learn about the exciting new features in XP now, click here.</td>
+		</tr></table>
+		</div>
+		<center>
+			<div class="window" style="width:100%;">
+				<div style="justify-content:left;" class="title-bar">
+					<img src="../media/Apps/Foldericon.png">
+					<div class="title-bar-text" style="padding-left:6px;">My stuff</div>
+				</div>
+				<div style="display:flex; justify-content:space-between; flex-direction:column;">
+					<h2>This is a pile of random images I have created.</h2>
+					<div class="flexContainer" id="crashba">
+						<img src="mergo.jpg" alt="Mergo">
+						<img src="the scrotsons.jpg" alt="The Scrotsons">
+						<img src="roblox player.jpg" alt="Goo Goo Ga Ga">
+						<img src="og ocs.png" alt="My first OCs from 2014 (drawn in 2022)">
+						<img src="pride month.jpg" alt="Pride month special">
+						<img src="kirby.png" alt="Kirby">
+						<img src="cirnogoog.gif" alt="3D Googa Cirno edition">
+						<img src="3dgoog.gif" alt="3D Googa">
+						<img src="dingus.gif" alt="Dongus gif">
+						<img src="hislies.png" alt="Googa Lore">
+						<img src="doag.gif" alt="Scratch PFP">
+						<img src="gunchus dev.png" alt="CannyGunch">
+						<img src="real dog.jpg" alt="Walter if he was a man">
+						<img src="sam nft.jpg" alt="The Sam NFT">
+						<img src="pogg.png" alt="Whiteout POG">
+						<img src="turnip man epic.png" alt="Turnip man">
+						<img src="jesus dog.png" alt="Floating dog">
+					</div>
+					<script> 
+const infoBub = document.getElementById("infoBub");
+const ct = document.getElementById("context");
+const imageContainer = document.getElementById('crashba');
+let clientX,clientY;
+
+//imageContainer.parentNode.addEventListener('mousemove', handleMouseMove);
+document.addEventListener('mousemove', handleMouseMove);
+
+function mloop(){
+	infoBub.style.left = `${clientX-16}px`;
+	infoBub.style.top = `${clientY-24}px`;
+	if (Date.now()-startTime>2400 && hov.tagName == 'IMG' && !shown){
+		infoBub.style.opacity = "100%";
+		ct.innerHTML = hov.alt
+		shown=true;
+	}
+	requestAnimationFrame(mloop);
+}
+requestAnimationFrame(mloop);
+
+let startTime, hov;
+let lastX = 0;
+let shown = false;
+
+function isElementChildOf(element, par) {
+  let parent = element.parentNode;
+
+  while (parent !== null) {
+    if (parent === par) {
+      return true;
+    }
+    parent = parent.parentNode;
+  }
+
+  return false;
+}
+
+function handleMouseMove(event) {
+	const targetImage = event.target;
+	clientY = event.pageY;
+	clientX = event.pageX;
+	
+	console.log(isElementChildOf(targetImage,infoBub));
+	
+	if (( hov != targetImage || targetImage.tagName != 'IMG' ) && ( !isElementChildOf(targetImage,infoBub) )){
+		hov = targetImage;
+		startTime = Date.now();
+		infoBub.style.opacity = "0%";
+		shown=false;
+	} 
+	
+	if (targetImage.tagName === 'IMG' && targetImage.parentNode === imageContainer) {
+		
+		const imageRect = targetImage.getBoundingClientRect();
+
+		const cursorPosition = getCursorPosition(event, imageRect);
+
+		const normalizedPosition = normalizeCursorPosition(cursorPosition, imageRect);
+
+		// Use the normalized position as needed
+		//console.log('Normalized Cursor Position:', normalizedPosition);
+		//targetImage.style.objectPosition = Math.floor(normalizedPosition.x*100)+"%"
+		const nx = Math.floor(normalizedPosition.x*-100)+50;
+		const ny = Math.floor(normalizedPosition.y*-100)+50;
+		targetImage.style.setProperty('--img-offs',nx+"%"+" "+ny+"%")
+		
+	}
+	
+	
+}
+
+// Function to get cursor position relative to the image's center
+function getCursorPosition(event, imageRect) {
+  const cursorX = event.offsetX;
+  const cursorY = event.offsetY;
+
+  // Calculate the position relative to the image's center
+  const positionX = cursorX - imageRect.width / 2;
+  const positionY = cursorY - imageRect.height / 2;
+
+  return { x: positionX, y: positionY };
+}
+
+// Function to normalize cursor position from -0.5 to 0.5
+function normalizeCursorPosition(cursorPosition, imageRect) {
+  const normalizedX = cursorPosition.x / imageRect.width;
+  const normalizedY = cursorPosition.y / imageRect.height;
+
+  return { x: normalizedX, y: normalizedY };
+}
+					</script>
+				</div>
+			</div>
+		</center>
+		<div class="taskbar">
+			<a class="startbutton" href="../index.html"></a>
+		</div>
+    </body>
+</html>
