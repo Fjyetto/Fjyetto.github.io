@@ -1,0 +1,43 @@
+<!-- SONIC GAMER GAME - IF YOU READ THIS YOU'RE TRANS -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sonic GAMER</title>
+		<script src="canvas.js"></script>
+		<link rel="icon" type="image/x-icon" href="/RETROWORLD/media/Apps/SONICcon.png">
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="../style.css">
+		
+		<script src="CheckMobile.js"></script>
+		
+	</head>
+	<body style="margin: 0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <center> 
+			<div class="window" style="width:676px;">
+				<div style="justify-content:left;" class="title-bar">
+					<img src="../media/Apps/SONICcon.png">
+					<div class="title-bar-text" style="padding-left:6px;">Sonic!!!</div>
+				</div>-->
+				<div style="display:flex; justify-content:space-between;margin-top:5px;">
+					<ul style="width:150px;">
+						<li>arrow keys -> Move</li>
+					</ul>
+					<iframe src="game.html" title="Game" width="480" height="360" style="border:1px solid #000000;"></iframe> 
+				</div>
+			</div>
+		<!-- </center> 
+		<div class="taskbar">
+			<a class="startbutton" href="../index.html"></a>
+		</div>-->
+<script>
+const pageInfo = {
+	width: "676px",
+	height: document.body.scrollHeight+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
+	</body>
+</html>

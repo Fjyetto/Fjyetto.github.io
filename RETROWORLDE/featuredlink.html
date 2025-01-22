@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Featured Link</title>
+		<link rel="icon" type="image/x-icon" href="media/Apps/notepadicon.png">
+		<link rel="stylesheet" href="https://unpkg.com/98.css" />
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap" rel="stylesheet"> 
+		
+		<meta content="noepd" property="og:title" />
+		<meta content="ABOUT" property="og:description" />
+		<meta content="https://papatomique.github.io/featuredlink.html" property="og:url" />
+		<meta content="https://papatomique.github.io/media/Apps/text.png" property="og:image" />
+		<meta content="#FFFFFF" data-react-helmet="true" name="theme-color" />
+	</head>
+	<body style="margin:0px; background-image: none; font-family: 'Pixelated MS Sans Serif',Arial; font-size: 11px;">
+		<!-- <div class="window" style="width: min-content; margin-top:40px; left:50%; transform:translateX(-50%);position:relative;"> 
+			<div style="justify-content:left;" class="title-bar">
+				<img src="media/Apps/notepadicon.png">
+				<div class="title-bar-text" style="padding-left:6px;">Featured Link</div>
+			</div>-->
+			<div class="window-body" >
+<script type="text/javascript">
+function leave(crap){
+	console.log("bye im going to "+crap);
+	window.top.location.href=crap;
+}
+</script>
+				<p>Last update: 13/10/2023<br><a href="https://tofokyo.com/" target="_parent">Featured: <em>Tofokyo's website</em></a><br>
+It's just so good</p>
+			</div>
+		</div>
+<script>
+const pageInfo = {
+	width: Math.max(document.body.scrollWidth,100)+"px",
+	height: Math.max(document.body.scrollHeight,100)+"px",
+	title: document.title,
+	icon: document.querySelector("link[rel*='icon']").href || '/caca.png'
+};
+parent.postMessage("PI:"+JSON.stringify(pageInfo),'*');
+</script>
+	</body>
+</html>

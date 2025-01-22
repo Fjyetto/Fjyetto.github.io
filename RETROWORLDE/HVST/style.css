@@ -1,0 +1,19 @@
+body{
+	font-smooth: never;
+	-webkit-font-smoothing: none;
+	-moz-osx-font-smoothing: grayscale;
+}
+.asset {
+	width: 0px;
+}
+ul {
+	list-style: none;
+	position:relative;
+	float: left;
+	padding-left: 4.2%;
+}
+li {
+	margin-top:2px;
+	text-align:left;
+	transform:translate(0px,0px);
+}

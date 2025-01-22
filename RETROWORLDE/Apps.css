@@ -1,0 +1,80 @@
+td {
+	width: 70px;
+}
+
+.gombs {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/gombs.png");
+	height: 51px;
+	width: 35px;
+}
+.gombs:hover {
+	background-image: url("media/Apps/gombsA.png");
+}
+
+.ABOUT {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/ABOUT.png");
+	height: 51px;
+	width: 38px;
+}
+.ABOUT:hover {
+	background-image: url("media/Apps/ABOUTA.png");
+}
+
+.HVST {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/HVST.png");
+	height: 50px;
+	width: 32px;
+}
+.HVST:hover {
+	background-image: url("media/Apps/HVSTA.png");
+}
+
+.BF {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/BF.png");
+	height: 50px;
+	width: 32px;
+}
+.BF:hover {
+	background-image: url("media/Apps/BFA.png");
+}
+
+.BDAY {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/BDAY.png");
+	height: 51px;
+	width: 30px;
+}
+.BDAY:hover {
+	background-image: url("media/Apps/BDAYA.png");
+}
+
+.SONIC {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/sonicgamer.png");
+	height: 51px;
+	width: 61px;
+}
+.SONIC:hover {
+	background-image: url("media/Apps/sonicgamerA.png");
+}
+
+.UPD {
+	position: relative;
+	display:inline-block;
+	background-image: url("media/Apps/UPDATE.png");
+	height: 51px;
+	width: 38px;
+}
+.UPD:hover {
+	background-image: url("media/Apps/UPDATEA.png");
+}
