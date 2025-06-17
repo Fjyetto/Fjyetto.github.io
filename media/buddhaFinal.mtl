@@ -1,0 +1,12 @@
+# Blender 3.6.2 MTL File: 'buddha4.blend'
+# www.blender.org
+
+newmtl shittowk
+Ns 843.058228
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.518026 0.111148
+Ks 0.177273 0.177273 0.177273
+Ni 1.450000
+d 1.000000
+illum 3
+map_Ke D:/3D/gaminginc/buddha1/budher.png

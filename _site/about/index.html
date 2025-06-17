@@ -1,43 +1,83 @@
-<!-- Welcome to my awesome new website that will look even better than version 2 -->
-<!-- this shit getting tough here are some refs
-	https://www.webdesignmuseum.org/exhibitions
-	https://x.com/i/status/1880725776011837599 cool 3d menu
-	https://pbs.twimg.com/media/GhYZ-CJbUAEsnoy?format=jpg&name=small rf/zengard.jpg zen garden
-	https://x.com/WebDesignMuseum/status/1875217412582523158 rf/t26.jpg websites
-	rf/sims.png
-	rf/n2k.png
-	rf/gbm2006.png
-
-	I don't need to follow us graphic company's ideas idk why i had that in mind
-	i don't want this to be too much like some 16 year old's neocities website
-	i want this to be actually both useful and interesting to any curious web-surfer
-	i think i want a website design reminiscent of 2004-2006, refs above
-
--->
 <!DOCTYPE html>
 <html>
 	<head>
 
-		<title>FJ HOME</title>
-		
+		<title>About</title>
+		<link rel="icon" href="/icon.png" />
 		<link href="/stylegod.css" rel="stylesheet">
 	</head>
 	<body style="display: flex;
   align-items: center;
   flex-direction: column;">
-		<div style="width:640px; background: #eee; border: #112 1px solid; padding: 1px">
+  		
+  		<canvas id="cv" style="z-index: 10; position:absolute; width:100%"></canvas>
+<script type="text/javascript" src="/bgsc.js"></script>
+  		
+		<div style="width:640px; padding: 1px; z-index: 50;" class="maina">
 			<div class="nbar" style="align-items: center; display: flex; justify-content: space-around; padding: 0px 10px;">
-	<p>FJ Home</p>
-	<a href="RETROWORLD/">Old Page</a>
-	<a href="about/">Abour</a>
+	<a href="/">FJ HOME</a>
+	<a href="/about/">ABOUT</a>
+	<a href="/involvements/">INVOLVEMENTS</a>
+	<a href="/shelf/">SHELF</a>
 	<marquee width="160">The greatest website in the world gets a redesign! come visit! marvel at the culmination of 6 months nofap- imean nocode! A brand new coat of paint! You will love it.</marquee>
 </div>
+<hr style="border-bottom: 1px solid black;">
 			<article>
 
-				<h2>fjyetto.dev gets a redesign!</h2>
+				<h2>About</h2>
 				<hr>
-				<p>Have you ever wanted to follow fjyetto</p>
+				<div id="ttip" style="background:#add; border: #112 1px solid; position: absolute; display:none; width:200px; height: fit-content; z-index: 60;">
+	<center id="scratch" style="display:none;">
+		<p>one of my early projects</p><hr /><img src="/RETROWORLD/media/mario%20brrr.jpg" width="160" />
+	</center>
+	<center id="roblox" style="display:none;">
+		<p>one of my early games</p><hr /><img src="/RETROWORLD/media/f3x%20showcase.jpg" width="160" />
+	</center>
+</div>
+<div style="text-align: left;margin: 8px;">
+<p><dd>Hello! I am fjyetto.</dd>I am an 18 year old software engineer and hardware enthusiast.<br />
+I have been programming for 
+<!-- terrible way to do this but hey it works -->
+<span id="year">2014</span> years, first on <span class="dut" onmouseover="tt.style.display = 'block';sc.style.display = 'block'" onmouseleave="tt.style.display = 'none';sc.style.display = 'none'">scratch</span> in 2014, creating simple games, then in lua on
+  <span class="dut" onmouseover="tt.style.display = 'block';rx.style.display = 'block'" onmouseleave="tt.style.display = 'none';rx.style.display = 'none'">roblox</span> in 2016. After these I dabbled in many other languages: C, HTML5, Python, Java, all the good stuff to have on a resume, but nowadays I still mostly write lua. I have grown attached to roblox, building friendships and a tight-knit devteam.<br />To this day, I make games on roblox, although I try to find alternatives in godot or custom game engines.<br />In the future, I see myself making a living doing what I love with my friends.<br />
+If you would like to contact me, you may at <a href="mailto:fjyetto@proton.me">fjyetto@proton.me</a>
+</p>
+</div>
+
+<script>
+	const y = document.getElementById("year");
+	y.innerHTML = (new Date().getFullYear()) - y.innerHTML;
+
+	let mx=0;
+	let my=0;
+	const tt=document.getElementById('ttip');
+	const sc=document.getElementById('scratch');
+	const rx=document.getElementById('roblox');
+	document.addEventListener('mousemove', function(event) {
+	    //console.log('Mouse X:', event.clientX, 'Mouse Y:', event.clientY);
+	    mx=event.clientX;
+	    my=event.clientY;
+	    tt.style.left = (mx+20)+'px';
+	    tt.style.top = (my+3)+'px';
+	});
+</script>
+
+
 			</article>
 		</div>
+		<footer style="width: 100%;"><div style="display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  width: 360px;
+  margin: auto;
+  height: 16px;" class="foota">
+<p style="color: #eee; margin: auto;">©️ 2025 All rights reserved</p>
+<a href="https://bsky.app/profile/fjyetto.dev" style="color: #24f"><img src="/btn/bsky-button.png"></a>
+<a href="https://x.com/fjyetto" style="color: #000"><img src="/btn/twitter-button.png"></a>
+<a href="https://www.youtube.com/@fjyetto" style="color: #f33"><img src="/btn/youtube-button.png"></a>
+<a href="https://scratch.mit.edu/users/papatomique22/" style="color: #f83"><img src="/btn/scratch-button.png"></a>
+<a href="https://www.roblox.com/users/110869810/profile" style="color: #999"><img src="/btn/rbx-button.png"></a>
+<a href="https://www.instagram.com/fjyetto" style="color: #c2e"><img src="/btn/instagram-button.png"></a>
+</div></footer>
 	</body>
 </html>
