@@ -1,5 +1,5 @@
 ---
-permalink: /involvements/
+permalink: /endeavours/
 layout: post
 title:  "Check out what I worked on"
 ---
