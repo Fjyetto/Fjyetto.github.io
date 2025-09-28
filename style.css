@@ -6,6 +6,7 @@ html{
 	background-size: cover;
 	image-rendering: pixelated;
 	font-family: "gog", sans-serif;
+	background-color: #bce;
 	/*-webkit-font-smoothing: none;
 	font-smooth: none;*/
 }
